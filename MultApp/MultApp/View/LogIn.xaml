@@ -5,7 +5,7 @@
              BackgroundColor="White">
    
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Padding="30" Spacing="40">
+        <StackLayout Orientation="Vertical" VerticalOptions="Center" Padding="30" Spacing="40">
             <Image Source="Logo.png" HeightRequest="150"></Image>
             <BoxView HeightRequest="-51"/>
             <Image HorizontalOptions="Center" WidthRequest="300" Source="maco.jpg"/>
@@ -23,7 +23,7 @@
             </Frame>
             <Button Command="{Binding SubmitCommand}" Text="Ingresar" TextColor="White"  
                     FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
-                    BackgroundColor="Black" />
+                    BackgroundColor="Black"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage> 

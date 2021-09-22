@@ -3,6 +3,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MultApp.ViewModel;
+using MultApp.Services;
 
 namespace MultApp.View
 {
@@ -11,10 +12,9 @@ namespace MultApp.View
     {
         public LogIn()
         {
-            var vm = new LoginViewModel();
-            this.BindingContext = vm;
-            vm.DisplayInvalidLoginPrompt += () => DisplayAlert("Error", "Contrañesa Invalida", "OK");
             InitializeComponent();
+            var logInViewModel = new LoginViewModel(new AlertService(), new NavigationService());
+            BindingContext = logInViewModel;
 
             Email.Completed += (object sender, EventArgs e) =>
             {
@@ -23,7 +23,7 @@ namespace MultApp.View
 
             Password.Completed += (object sender, EventArgs e) =>
             {
-                vm.SubmitCommand.Execute(null);
+                logInViewModel.SubmitCommand.Execute(null);
             };
         }
     }

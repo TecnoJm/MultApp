@@ -11,7 +11,9 @@ namespace MultApp
         {
             InitializeComponent();
             //Nueva pantalla de inicio: LogIn
-            MainPage = new NavigationPage(new LogIn());
+            LogIn LogInView = new LogIn();
+            NavigationPage.SetHasNavigationBar(LogInView, false);
+            MainPage = new NavigationPage(LogInView);
 
         }
 
