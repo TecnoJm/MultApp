@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace MultApp
+namespace XamarinForms_Login
 {
     public partial class MainPage : ContentPage
     {
         public MainPage()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
     }
 }

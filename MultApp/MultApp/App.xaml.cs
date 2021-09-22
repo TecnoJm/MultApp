@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using MultApp.View;
 
 namespace MultApp
 {
@@ -9,8 +10,9 @@ namespace MultApp
         public App()
         {
             InitializeComponent();
+            //Nueva pantalla de inicio: LogIn
+            MainPage = new NavigationPage(new LogIn());
 
-            MainPage = new MainPage();
         }
 
         protected override void OnStart()
