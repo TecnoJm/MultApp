@@ -2,11 +2,37 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MultApp.View.MainScreen">
+    <ContentPage.Resources>
+        <Style x:Key="AllText" TargetType="Label">
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+        <Style x:Key="Header" TargetType="Label" BasedOn="{StaticResource AllText}">
+            <Setter Property="FontSize" Value="32" />
+        </Style>
+        <Style x:Key="Options" TargetType="Label" BasedOn="{StaticResource AllText}">
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+        <Style x:Key="imgButtons" TargetType="ImageButton">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="HeightRequest" Value="135"/>
+            <Setter Property="WidthRequest" Value="200"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Margin="20">
+            <Label Text="Menu Principal" Style="{StaticResource Header}"/>
+            <ImageButton Source="" Command="" Style="{StaticResource imgButtons}">
+            </ImageButton>
+            <Label Text="Ver Estado" Style="{StaticResource Options}"/>
+            <ImageButton Source="" Command="" Style="{StaticResource imgButtons}">
+            </ImageButton>
+            <Label Text="Escribir Multa" Style="{StaticResource Options}"/>
+            <ImageButton Source="" Command="" Style="{StaticResource imgButtons}">
+            </ImageButton>
+            <Label Text="Lista de Multas" Style="{StaticResource Options}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
