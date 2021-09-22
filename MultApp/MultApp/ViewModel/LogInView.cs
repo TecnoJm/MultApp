@@ -1,62 +1,48 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 using MultApp.View;
 
 namespace MultApp.ViewModel
 {
-    public class LogInView : INotifyPropertyChanged
+    public class LoginViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        public LogInView()
-        {
-
-        }
+        public Action DisplayInvalidLoginPrompt;
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
         private string email;
-        public string EmailEntry
+        public string Email
         {
             get { return email; }
             set
             {
                 email = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Email"));
+                PropertyChanged(this, new PropertyChangedEventArgs("EmailEntry"));
             }
         }
         private string password;
-        public string PasswordEntry
+        public string Password
         {
             get { return password; }
             set
             {
                 password = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Password"));
+                PropertyChanged(this, new PropertyChangedEventArgs("PasswordEntry"));
             }
         }
-        public Command LogInCommand
+        public ICommand SubmitCommand { protected set; get; }
+        public LoginViewModel()
         {
-            get
-            {
-                return new Command(Login);
-            }
+            SubmitCommand = new Command(OnSubmit);
         }
-        
-        private void Login()
+        public void OnSubmit()
         {
-            if (string.IsNullOrEmpty(EmailEntry) || string.IsNullOrEmpty(PasswordEntry))
-                Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Empty Values", "Please enter Email and Password", "OK");
-            else
+            //Codigo de pruebas de ingreso
+            if (email == "Usuario" && password == "123")
             {
-                if (EmailEntry == "jhonatan@gmail.com" && PasswordEntry == "abcde123")
-                {
-                    Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Bienvenido Jhonatan", "", "Ok");
-                    Xamarin.Forms.Application.Current.MainPage.Navigation.PushAsync(new MainScreen());
-                }
-                else
-                    Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Login Fail", "Please enter correct Email and Password", "OK");
+                Xamarin.Forms.Application.Current.MainPage.Navigation.PushAsync(new MainScreen());
             }
+            else DisplayInvalidLoginPrompt();
         }
     }
 }

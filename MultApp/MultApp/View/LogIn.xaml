@@ -1,22 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:MultApp.ViewModel" x:DataType="viewmodel:LogInView"
-             x:Class="MultApp.View.LogIn">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"  
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+             x:Class="MultApp.View.LogIn"  
+             BackgroundColor="White">
+   
     <ContentPage.Content>
-        <StackLayout>
-            <Entry x:Name = "EmailEntry" Placeholder = "Email" Text="{Binding EmailEntry}"  
-                   HeightRequest = "40"  
-                   Keyboard = "Email"/>
-
-            <Entry x:Name = "PasswordEntry" Text="{Binding PasswordEntry}" Placeholder = "Password"  
-                   HeightRequest = "40"  
-                   IsPassword = "True"/>
-
-            <Button x:Name= "loginbtn" Text = "Login"   
-                    Command="{Binding LogInCommand}"  
-                    HorizontalOptions = "FillAndExpand"/>
-
+        <StackLayout Orientation="Vertical" Padding="30" Spacing="40">
+            <Image Source="Logo.png" HeightRequest="150"></Image>
+            <BoxView HeightRequest="-50"/>
+            <Image HorizontalOptions="Center" WidthRequest="300" Source="maco.jpg"/>
+            <Frame BackgroundColor="#01A93E" HasShadow="False">
+                <StackLayout Orientation="Vertical" Spacing="10">
+                    <Entry x:Name="Email" Text="{Binding Email}" Placeholder=""   
+                           PlaceholderColor="White" HeightRequest="40"   
+                           Keyboard="Email"  
+                           TextColor="White"/>
+                    <Entry x:Name="Password" Text="{Binding Password}" Placeholder=""   
+                           PlaceholderColor="Black" HeightRequest="40"   
+                           IsPassword="True"  
+                           TextColor="White"/>
+                </StackLayout>
+            </Frame>
+            <Button Command="{Binding SubmitCommand}" Text="Ingresar" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="Black" />
         </StackLayout>
     </ContentPage.Content>
-</ContentPage>  
-
+</ContentPage> 

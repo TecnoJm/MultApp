@@ -9,12 +9,22 @@ namespace MultApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LogIn : ContentPage
     {
-        LogInView logInView;
         public LogIn()
         {
-            logInView = new LogInView();
+            var vm = new LoginViewModel();
+            this.BindingContext = vm;
+            vm.DisplayInvalidLoginPrompt += () => DisplayAlert("Error", "Contrañesa Invalida", "OK");
             InitializeComponent();
-            BindingContext = logInView;
+
+            Email.Completed += (object sender, EventArgs e) =>
+            {
+                Password.Focus();
+            };
+
+            Password.Completed += (object sender, EventArgs e) =>
+            {
+                vm.SubmitCommand.Execute(null);
+            };
         }
     }
 }
