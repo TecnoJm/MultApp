@@ -7,7 +7,7 @@
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Padding="30" Spacing="40">
             <Image Source="Logo.png" HeightRequest="150"></Image>
-            <BoxView HeightRequest="-50"/>
+            <BoxView HeightRequest="-51"/>
             <Image HorizontalOptions="Center" WidthRequest="300" Source="maco.jpg"/>
             <Frame BackgroundColor="#01A93E" HasShadow="False">
                 <StackLayout Orientation="Vertical" Spacing="10">
