@@ -16,21 +16,21 @@
         </Style>
         <Style x:Key="imgButtons" TargetType="ImageButton">
             <Setter Property="HorizontalOptions" Value="Center"/>
-            <Setter Property="HeightRequest" Value="135"/>
-            <Setter Property="WidthRequest" Value="200"/>
+            <Setter Property="HeightRequest" Value="130"/>
+            <Setter Property="WidthRequest" Value="140"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Margin="20">
+        <StackLayout Margin="11">
             <Label Text="Menu Principal" Style="{StaticResource Header}"/>
-            <ImageButton Source="" Command="" Style="{StaticResource imgButtons}">
+            <ImageButton Source="" Style="{StaticResource imgButtons}">
             </ImageButton>
             <Label Text="Ver Estado" Style="{StaticResource Options}"/>
-            <ImageButton Source="" Command="" Style="{StaticResource imgButtons}">
+            <ImageButton Source=""  Style="{StaticResource imgButtons}">
             </ImageButton>
             <Label Text="Escribir Multa" Style="{StaticResource Options}"/>
-            <ImageButton Source="" Command="" Style="{StaticResource imgButtons}">
+            <ImageButton Source="" Style="{StaticResource imgButtons}">
             </ImageButton>
             <Label Text="Lista de Multas" Style="{StaticResource Options}"/>
         </StackLayout>
