@@ -5,6 +5,10 @@
     <Application.Resources>
         <Style x:Key="AllText" TargetType="Label">
             <Setter Property="TextColor" Value="Black" />
+        </Style>
+        <Style x:Key="Header" TargetType="Label" BasedOn="{StaticResource AllText}">
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+            <Setter Property="FontSize" Value="32" />
             <Setter Property="FontAttributes" Value="Bold"/>
         </Style>
     </Application.Resources>
