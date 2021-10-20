@@ -2,10 +2,10 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Forms;
-using MultApp.View;
+using MultApp.Views;
 using MultApp.Services;
 
-namespace MultApp.ViewModel
+namespace MultApp.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
@@ -32,7 +32,7 @@ namespace MultApp.ViewModel
                 }
 
             });
-           
+
         }
     }
 }

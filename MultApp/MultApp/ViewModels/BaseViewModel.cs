@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultApp.ViewModel
+namespace MultApp.ViewModels
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {

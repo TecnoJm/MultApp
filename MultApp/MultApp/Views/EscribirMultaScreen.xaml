@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MultApp.View.EscribirMultaScreen">
+             x:Class="MultApp.Views.EscribirMultaScreen">
     <ContentPage.Resources>
         <Style x:Key="CrearHeadersLabels" TargetType="Label" BasedOn="{StaticResource AllText}">
             <Setter Property="FontSize" Value="18" />
@@ -32,8 +32,8 @@
                 <Picker Grid.Row="4" Grid.Column="1" ItemsSource="{Binding LeyInfringida}" />
             </Grid>
             <Button Text="Registrar Infraccion" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,50,0,0" Command="{Binding RegistrarInfraccionCommand}"/>
-            
-            
+
+
             <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Margin="0,0,0,30" VerticalOptions="EndAndExpand">
                 <Image Source="backIcon" Grid.Column="0" WidthRequest="18" />
                 <Label Text=" Volver" BackgroundColor="Transparent" Grid.Column="1"  TextColor="Black" FontAttributes="Bold" FontSize="18"/>

@@ -1,12 +1,12 @@
 ﻿using MultApp.Services;
-using MultApp.View;
+using MultApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace MultApp.ViewModel
+namespace MultApp.ViewModels
 {
     public class MainScreenViewModel : BaseViewModel
     {

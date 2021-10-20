@@ -1,5 +1,5 @@
 ﻿using MultApp.Services;
-using MultApp.ViewModel;
+using MultApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MultApp.View
+namespace MultApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainScreen : ContentPage
+    public partial class VerEstadoMultaScreen : ContentPage
     {
-        public MainScreen()
+        public VerEstadoMultaScreen()
         {
             InitializeComponent();
-            BindingContext = new MainScreenViewModel(new AlertService(), new NavigationService());
+            BindingContext = new VerEstadoMultaViewModel(new AlertService(), new NavigationService());
         }
     }
 }

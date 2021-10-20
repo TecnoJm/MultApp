@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using MultApp.View;
+using MultApp.Views;
 
 namespace MultApp
 {

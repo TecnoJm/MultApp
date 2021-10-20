@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace MultApp.ViewModel
+namespace MultApp.ViewModels
 {
     public class EscribirMultaViewModel : BaseViewModel
     {

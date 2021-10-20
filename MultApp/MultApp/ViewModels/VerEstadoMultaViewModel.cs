@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace MultApp.ViewModel
+namespace MultApp.ViewModels
 {
     public class VerEstadoMultaViewModel : BaseViewModel
     {
