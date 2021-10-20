@@ -22,9 +22,7 @@ namespace MultApp.ViewModel
             //Codigo de pruebas de ingreso
             if (Email == "Usuario" && Password == "123")
             {
-                var mainScreen = new MainScreen();
-                NavigationPage.SetHasNavigationBar(mainScreen, false);
-                await NavigationService.NavigationAsync(mainScreen);
+                await NavigationService.NavigationAsync(new MainScreen(), false);
             }
             else
             {

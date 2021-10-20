@@ -10,5 +10,6 @@ namespace MultApp.Services
     {
         Task NavigationAsync(Page page, bool hasNavigationBar);
         Task NavigationPopAsync();
+
     }
 }
