@@ -21,16 +21,25 @@ namespace MultApp.ViewModel
         }
         private async void OnVerEstado()
         {
-            await NavigationService.NavigationAsync(new VerEstadoMultaScreen(), false);
+            await RunIsBusyTaskAsync(async () =>
+            {
+                await NavigationService.NavigationAsync(new VerEstadoMultaScreen(), false);
+            });
         }
         private async void OnEscribirMulta()
         {
-            await NavigationService.NavigationAsync(new EscribirMultaScreen(), false);
+            await RunIsBusyTaskAsync(async () =>
+            {
+                await NavigationService.NavigationAsync(new EscribirMultaScreen(), false);
+            });
 
         }
         private async void OnListaMulta()
         {
-            await NavigationService.NavigationAsync(new ListaMultaScreen(), false);
+            await RunIsBusyTaskAsync(async () =>
+            {
+                await NavigationService.NavigationAsync(new ListaMultaScreen(), false);
+            });
 
         }
 

@@ -19,15 +19,20 @@ namespace MultApp.ViewModel
         }
         public async void OnSubmit()
         {
-            //Codigo de pruebas de ingreso
-            if (Email == "Usuario" && Password == "123")
+            await RunIsBusyTaskAsync(async () =>
             {
-                await NavigationService.NavigationAsync(new MainScreen(), false);
-            }
-            else
-            {
-                await AlertService.AlertAsync("Error", "Usuario o Contraseña Invalidos");
-            }
+                //Codigo de pruebas de ingreso
+                if (Email == "Usuario" && Password == "123")
+                {
+                    await NavigationService.NavigationAsync(new MainScreen(), false);
+                }
+                else
+                {
+                    await AlertService.AlertAsync("Error", "Usuario o Contraseña Invalidos");
+                }
+
+            });
+           
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MultApp.ViewModel
 {
@@ -10,6 +11,7 @@ namespace MultApp.ViewModel
     {
         public IAlertService AlertService { get; }
         public INavigationService NavigationService { get; }
+        public bool IsBusy { get; set; }
 
         protected BaseViewModel(IAlertService alertService, INavigationService navigationService)
         {
@@ -17,6 +19,23 @@ namespace MultApp.ViewModel
             NavigationService = navigationService;
         }
 
+        protected async Task RunIsBusyTaskAsync(Func<Task> awaitableTask)
+        {
+            if (IsBusy)
+            {
+                // prevent accidental double-tap calls
+                return;
+            }
+            IsBusy = true;
+            try
+            {
+                await awaitableTask();
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
