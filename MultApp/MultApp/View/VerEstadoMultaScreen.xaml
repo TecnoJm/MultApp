@@ -5,6 +5,7 @@
     <ContentPage.Resources>
         <Style x:Key="EstadoLabels" TargetType="Label" BasedOn="{StaticResource AllText}">
             <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontAttributes" Value="Bold"/>
         </Style>
         <Style x:Key="EstadoDatos" TargetType="Label">
             <Setter Property="FontSize" Value="16" />
