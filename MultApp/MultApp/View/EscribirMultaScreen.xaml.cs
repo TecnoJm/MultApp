@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MultApp.Services;
+using MultApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,7 @@ namespace MultApp.View
         public EscribirMultaScreen()
         {
             InitializeComponent();
+            BindingContext = new EscribirMultaViewModel(new AlertService(), new NavigationService());
         }
     }
 }
