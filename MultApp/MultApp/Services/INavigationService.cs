@@ -8,7 +8,7 @@ namespace MultApp.Services
 {
     public interface INavigationService
     {
-        Task NavigationAsync(Page page);
+        Task NavigationAsync(Page page, bool hasNavigationBar);
         Task NavigationPopAsync();
     }
 }

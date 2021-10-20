@@ -8,8 +8,12 @@ namespace MultApp.Services
 {
     public class NavigationService : INavigationService
     {
-        public Task NavigationAsync(Page page)
+        public Task NavigationAsync(Page page, bool hasNavigationBar)
         {
+            if (!hasNavigationBar)
+            {
+                NavigationPage.SetHasNavigationBar(page, false);
+            }
             return App.Current.MainPage.Navigation.PushAsync(page);
         }
 
