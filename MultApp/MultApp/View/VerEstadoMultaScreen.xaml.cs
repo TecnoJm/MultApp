@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MultApp.Services;
+using MultApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +14,10 @@ namespace MultApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VerEstadoMultaScreen : ContentPage
     {
-        public VerEstadoMultaScreen(Services.AlertService alertService, Services.NavigationService navigationService)
+        public VerEstadoMultaScreen()
         {
             InitializeComponent();
+            BindingContext = new VerEstadoMultaViewModel(new AlertService(), new NavigationService());
         }
     }
 }
