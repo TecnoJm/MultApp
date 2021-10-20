@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MultApp.Views.ListaMultaScreen">
+    <ContentPage.Resources>
+        <Style x:Key="TableHeader" TargetType="Label" BasedOn="{StaticResource AllText}">
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Multas" Style="{StaticResource Header}"/>
+            <Grid ColumnDefinitions="*,*" Margin="10,10,10,0" HeightRequest="25">
+                <Label Text="Ley Infringida" Style="{StaticResource TableHeader}" Grid.Column="0" />
+                <Label Text="Fecha" Style="{StaticResource TableHeader}" Grid.Column="1" HorizontalTextAlignment="Center"/>
+            </Grid>
+            <BoxView Color="Black" HeightRequest="2"/>
+            
+            <ListView
+                ItemSelected="ListViewItemSelected"
+                ItemsSource="{Binding Multas}"
+                SeparatorVisibility="None"
+                >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid ColumnDefinitions="*,*" Margin="10">
+                                <Label Text="{Binding LeyInfringida}" Style="{StaticResource AllText}" Grid.Column="0"/>
+                                <Label Text="{Binding FechaInfraccion}" Style="{StaticResource AllText}" Grid.Column="1" HorizontalTextAlignment="Center"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
