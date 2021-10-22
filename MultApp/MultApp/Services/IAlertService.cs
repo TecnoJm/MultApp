@@ -8,5 +8,6 @@ namespace MultApp.Services
     public interface IAlertService
     {
         Task AlertAsync(string title, string description);
+        Task AlertAsync(string v, object p);
     }
 }

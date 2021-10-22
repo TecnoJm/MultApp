@@ -12,5 +12,9 @@ namespace MultApp.Services
             return App.Current.MainPage.DisplayAlert(title, description, "Ok");
         }
 
+        public Task AlertAsync(string v, object p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
