@@ -20,23 +20,24 @@
                 <Entry Grid.Row="0" Grid.Column="1" Placeholder="Numero de cedula" x:Name="UserCedula"/>
 
                 <Label Text="No. Licencia" Style="{StaticResource CrearHeadersLabels}" Grid.Row="1" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
-                <Entry Grid.Row="1" Grid.Column="1" Placeholder="Numero de licencia" x:Name="UserLicencia" />
+                <Entry Grid.Row="1" Grid.Column="1" Placeholder="Numero de licencia"  x:Name="UserLicencia" Text="{Binding UserLicencia}" />
 
                 <Label Text="Nombres" Style="{StaticResource CrearHeadersLabels}" Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
                 <Entry Grid.Row="2" Grid.Column="1" Placeholder="Nombres" x:Name="UserNombres" />
 
                 <Label Text="Apellidos" Style="{StaticResource CrearHeadersLabels}" Grid.Row="3" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
-                <Entry Grid.Row="3" Grid.Column="1"  Placeholder="Apellidos" x:Name="UserN"/>
+                <Entry Grid.Row="3" Grid.Column="1"  Placeholder="Apellidos" x:Name="UserApellidos"/>
 
                 <Label Text="Ley Infringida" Style="{StaticResource CrearHeadersLabels}" Grid.Row="4" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
-                <Picker Grid.Row="4" Grid.Column="1" ItemsSource="{Binding LeyInfringida}" />
+                <Picker Grid.Row="4" Grid.Column="1" ItemsSource="{Binding LeyInfringida}" SelectedIndex="{Binding InfraccionSeleccionada}" />
             </Grid>
             <Button Text="Registrar Infraccion" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,50,0,0" Command="{Binding RegistrarInfraccionCommand}"/>
 
 
-            <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Margin="0,0,0,30" VerticalOptions="EndAndExpand">
+            <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Margin="0,0,0,30" VerticalOptions="EndAndExpand" x:Name="UserLeyes">
                 <Image Source="backIcon" Grid.Column="0" WidthRequest="18" />
                 <Label Text=" Volver" BackgroundColor="Transparent" Grid.Column="1"  TextColor="Black" FontAttributes="Bold" FontSize="18"/>
+               
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding VolverCommand}"/>
                 </Grid.GestureRecognizers>

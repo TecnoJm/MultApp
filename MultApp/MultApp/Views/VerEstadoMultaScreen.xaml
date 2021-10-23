@@ -16,20 +16,19 @@
         <StackLayout Margin="15" Spacing="15">
             <Image HorizontalOptions="CenterAndExpand" BackgroundColor="Red" HeightRequest="180" WidthRequest="180"/>
             <Label Text="No. Cedula" Style="{StaticResource EstadoLabels}" Margin="5,0,0,0"/>
-            <Label Text="15131326541651" Style="{StaticResource EstadoDatos}" Margin="5,0,0,0"/>
+            <Label Text="15131326541651" Style="{StaticResource EstadoDatos}" Margin="5,0,0,0" x:Name="UserCedula"/>
 
             <Label Text="No. Licencia" Style="{StaticResource EstadoLabels}" Margin="5,0,0,0"/>
-            <Label Text="15131326541651" Style="{StaticResource EstadoDatos}" Margin="5,0,0,0"/>
+            <Label Text="15131326541651" Style="{StaticResource EstadoDatos}" Margin="5,0,0,0" x:Name="UserLicencia"/>
 
             <Label Text="Nombres" Style="{StaticResource EstadoLabels}" Margin="5,0,0,0"/>
-            <Label Text="PrimerNombre SegundoNombre" Style="{StaticResource EstadoDatos}" Margin="5,0,0,0"/>
+            <Label Text="PrimerNombre SegundoNombre" Style="{StaticResource EstadoDatos}" Margin="5,0,0,0" x:Name="UserNombres"/>
 
             <Label Text="Apellidos" Style="{StaticResource EstadoLabels}" Margin="5,0,0,0"/>
-            <Label Text="PrimerApellido SegundoApellido" Style="{StaticResource EstadoDatos}" Margin="5,0,0,0"/>
-
+            <Label Text="PrimerApellido SegundoApellido" Style="{StaticResource EstadoDatos}" Margin="5,0,0,0" x:Name="UserApellidos"/>
 
             <Label Text="Fecha de Nacimiento" Style="{StaticResource EstadoLabels}" Margin="5,0,0,0"/>
-            <Label Text="23/08/1998" Style="{StaticResource EstadoDatos}" Margin="5,0,0,0"/>
+            <Label Text="23/08/1998" Style="{StaticResource EstadoDatos}"  Margin="5,0,0,0" x:Name="UserNacimiento" />
             <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Margin="0,20,0,0" >
                 <Image Source="backIcon" Grid.Column="0" WidthRequest="18" />
                 <Label Text=" Volver" BackgroundColor="Transparent" Grid.Column="1"  TextColor="Black" FontAttributes="Bold" FontSize="18"/>
