@@ -12,6 +12,7 @@ namespace MultApp.ViewModels
         public IAlertService AlertService { get; }
         public INavigationService NavigationService { get; }
         public bool IsBusy { get; set; }
+        public bool IsApiBusy { get; set; }
 
         protected BaseViewModel(IAlertService alertService, INavigationService navigationService)
         {

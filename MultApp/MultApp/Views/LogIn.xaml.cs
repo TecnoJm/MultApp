@@ -13,7 +13,7 @@ namespace MultApp.Views
         public LogIn()
         {
             InitializeComponent();
-            var logInViewModel = new LoginViewModel(new AlertService(), new NavigationService());
+            var logInViewModel = new LoginViewModel(new AlertService(), new NavigationService(), new AppUserApiService());
             BindingContext = logInViewModel;
 
             Email.Completed += (object sender, EventArgs e) =>

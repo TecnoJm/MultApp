@@ -5,67 +5,59 @@ using System.Windows.Input;
 using System.Data.SqlClient;
 using Xamarin.Forms;
 using MultApp.Services;
+using MultApp.Models;
 
 namespace MultApp.ViewModels
 {
     public class EscribirMultaViewModel : BaseViewModel
     {
-        public ObservableCollection<string> LeyInfringida { get; set; }
-        public int InfraccionSeleccionada { get; set; }
-
+        public ObservableCollection<Ley> Leyes { get; set; }
+        public ObservableCollection<Provincia> Provincias { get; set; }
+        public Ley LeyInfringida { get; set; }
+        public Provincia Provincia { get; set; }
+        public IPenaltyApiService PenaltyApiService { get; }
         public ICommand RegistrarInfraccionCommand { get; }
         public ICommand VolverCommand { get; }
-        public string UserLicencia { get; set; }
-        public int NumeroLey { get; set; }
-
-        public EscribirMultaViewModel(IAlertService alertService, INavigationService navigationService) : base(alertService, navigationService)
+        public Persona Persona { get; set; }
+        public Multa Multa { get; set; } = new Multa();
+        public EscribirMultaViewModel(IAlertService alertService, INavigationService navigationService, IPenaltyApiService penaltyApiService, Persona persona) : base(alertService, navigationService)
         {
+            PenaltyApiService = penaltyApiService;
+            Persona = persona;
+            Leyes = Config.Leyes;
+            Provincias = Config.Provincias;
+            LeyInfringida = new Ley();
             RegistrarInfraccionCommand = new Command(OnRegistrarInfraccion);
             VolverCommand = new Command(OnVolver);
-
-            LeyInfringida = new ObservableCollection<string>();
-            for (int i = 0; i < 6; i++)
-            {
-                LeyInfringida.Add($"Item {i}");
-            }
         }
 
         private async void OnRegistrarInfraccion()
         {
-            try
-            {        
-                 string serverdbname = "MultAppDB";
-                 string servername = "192.168.0.14";
-                 string serveruser = "Test";
-                 string serverpasword = "123456";
-
-                 string sqlconnectionstring = $"Data Source = {servername}; Initial Catalog = {serverdbname}; User Id={serveruser}; Password={serverpasword};";
-                 SqlConnection sqlconnection = new SqlConnection(sqlconnectionstring);
-
-                 //Abrir y cerrar la base de datos, siempre realizable mientas usemos la base de datos
-                 sqlconnection.Open();
-                 sqlconnection.Close();
-
-                 using (SqlConnection con = new SqlConnection(sqlconnectionstring))
-                  {
-                      con.Open();
-                      //Prueba de Insert SQL Test de Registro de Infraccion
-                      using (SqlCommand sqlcmd = new SqlCommand("SET IDENTITY_INSERT dbo.Penalty ON; Insert Into dbo.Penalty (Id, Seq, Code, PersonId, PenaltyTypeId, Description, AddressLine1, ProvinceId, PenaltyDate , Paid, CreatedDate) values((Select MAX(id) + 1 as num from dbo.Penalty), 7, 12, (Select Id from dbo.Person where DocumentNumber = @NumeroDocumento), @LeyInfringida, 'Se ha saltado un semaforo', 'Campos', 1, '2021-10-20 17:18:00.680', 1, '2021-10-20 17:18:00.680') ", con))
-                      {
-                          sqlcmd.Parameters.Add(new SqlParameter("NumeroDocumento", UserLicencia));
-                          sqlcmd.Parameters.Add(new SqlParameter("LeyInfringida", InfraccionSeleccionada));
-                          sqlcmd.ExecuteNonQuery();
-                      }
-                      con.Close();
-                  }
-
-                await AlertService.AlertAsync("!", "Infraccion Colocada");
-            }
-            catch (Exception ex)
+            IsApiBusy = true;
+            await RunIsBusyTaskAsync(async () =>
             {
-                Console.WriteLine(ex.Message);
-                throw;
-            }
+                if (!string.IsNullOrWhiteSpace(Multa.Description) && !string.IsNullOrWhiteSpace(Multa.Address) && !string.IsNullOrWhiteSpace(LeyInfringida.Descripcion) && LeyInfringida != null && Provincia != null)
+                {
+                    Multa.PersonId = Persona.Id;
+                    Multa.PenaltyTypeId = LeyInfringida.Id;
+                    Multa.ProvinceId = Provincia.Id;
+                    bool success = await PenaltyApiService.CreatePenaltyAsync(Multa);
+                    if (success)
+                    {
+                        await AlertService.AlertAsync("Exito", "Multa creada con exito");
+                        Multa = new Multa();
+                    }
+                    else
+                    {
+                        await AlertService.AlertAsync("Error", "Ha ocurrido un error al intentar crear la multa");
+                    }
+                }
+                else
+                {
+                    await AlertService.AlertAsync("Error", "Debe de llenar todos los campos");
+                }
+            });
+            IsApiBusy = false;
         }
 
         private async void OnVolver()

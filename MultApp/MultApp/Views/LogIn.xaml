@@ -9,6 +9,7 @@
             <Image Source="Logo.png" HeightRequest="150"></Image>
             <BoxView HeightRequest="-51"/>
             <Image HorizontalOptions="Center" WidthRequest="300" Source="maco.jpg"/>
+            <ActivityIndicator IsVisible="{Binding IsApiBusy}" IsRunning="{Binding IsApiBusy}" />
             <Frame BackgroundColor="#01A93E" HasShadow="False">
                 <StackLayout Orientation="Vertical" Spacing="10">
                     <Entry x:Name="Email" Text="{Binding Username}" Placeholder=""   
@@ -24,6 +25,8 @@
             <Button Command="{Binding SubmitCommand}" Text="Ingresar" TextColor="White"  
                     FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
                     BackgroundColor="Black"/>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage> 

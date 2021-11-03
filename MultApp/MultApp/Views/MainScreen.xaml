@@ -7,6 +7,14 @@
             <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
             <Setter Property="FontSize" Value="18" />
             <Setter Property="FontAttributes" Value="Bold"/>
+            <Style.Triggers>
+                <Trigger TargetType="Label" Property="IsEnabled" Value="False">
+                    <Setter Property="TextColor" Value="Gray"/>
+                </Trigger>
+                <Trigger TargetType="Label" Property="IsEnabled" Value="True">
+                    <Setter Property="TextColor" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style x:Key="imgButtons" TargetType="ImageButton">
             <Setter Property="HorizontalOptions" Value="Center"/>
@@ -14,19 +22,29 @@
             <Setter Property="WidthRequest" Value="140"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
+        <Style x:Key="EstadoDatos" TargetType="Label">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Margin="11">
             <Label Text="Menu Principal" Style="{StaticResource Header}"/>
+            <Label Text="Introduzca la Licencia" Margin="5,0,0,0"/>
+            <Entry Text="{Binding DocumentoDeIdentidad}" Style="{StaticResource EstadoDatos}"  Margin="0,0,0,0"/>
+            <ActivityIndicator IsVisible="{Binding IsApiBusy}" IsRunning="{Binding IsApiBusy}" />
 
-            <ImageButton Source="" Command="{Binding VerEstadoCommand}" Style="{StaticResource imgButtons}"/>
-            <Label Text="Ver Estado" Style="{StaticResource Options}"/>
+            <Button Text="Buscar" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" Command="{Binding BuscarPersona}" />
 
-            <ImageButton Source="" Command="{Binding EscribirMultaCommand}" Style="{StaticResource imgButtons}"/>
-            <Label Text="Escribir Multa" Style="{StaticResource Options}"/>
 
-            <ImageButton Source="" Command="{Binding ListaMultaCommand}" Style="{StaticResource imgButtons}"/>
-            <Label Text="Lista de Multas" Style="{StaticResource Options}"/>
+            <ImageButton Source="" Command="{Binding VerEstadoCommand}" Style="{StaticResource imgButtons}" IsEnabled="{Binding IsEnabled}" Grid.Row="0" Grid.Column="0"/>
+            <Label Text="Ver Estado" Style="{StaticResource Options}" IsEnabled="{Binding IsEnabled}"  Grid.Row="1" Grid.Column="0"/>
+
+            <ImageButton Source="" Command="{Binding EscribirMultaCommand}" Style="{StaticResource imgButtons}" IsEnabled="{Binding IsEnabled}" Grid.Row="0"  Grid.Column="1"/>
+            <Label Text="Escribir Multa" Style="{StaticResource Options}" IsEnabled="{Binding IsEnabled}" Grid.Row="1"  Grid.Column="1"/>
+
+            <!--<ImageButton Source="" Command="{Binding ListaMultaCommand}" Style="{StaticResource imgButtons}"/>
+            <Label Text="Lista de Multas" Style="{StaticResource Options}"/>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

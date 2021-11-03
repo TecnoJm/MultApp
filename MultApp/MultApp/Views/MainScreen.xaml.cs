@@ -17,7 +17,7 @@ namespace MultApp.Views
         public MainScreen()
         {
             InitializeComponent();
-            BindingContext = new MainScreenViewModel(new AlertService(), new NavigationService());
+            BindingContext = new MainScreenViewModel(new AlertService(), new NavigationService(), new PersonApiService());
         }
     }
 }

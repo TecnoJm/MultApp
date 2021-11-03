@@ -4,6 +4,9 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using MultApp.Views;
 using MultApp.Services;
+using Xamarin.Essentials;
+using MultApp.Models;
+using Newtonsoft.Json;
 
 namespace MultApp.ViewModels
 {
@@ -12,71 +15,41 @@ namespace MultApp.ViewModels
         public Action DisplayInvalidLoginPrompt;
         public string Username { get; set; }
         public string Password { get; set; }
+        public Usuario Usuario { get; set; }
+        IAppUserApiService AppUserApiService { get; }
         public ICommand SubmitCommand { protected set; get; }
 
-        public LoginViewModel(IAlertService alertService, INavigationService navigationService) : base(alertService, navigationService)
+        public LoginViewModel(IAlertService alertService, INavigationService navigationService, IAppUserApiService appUserApiService) : base(alertService, navigationService)
         {
+            AppUserApiService = appUserApiService;
             SubmitCommand = new Command(OnSubmit);
         }
         public async void OnSubmit()
         {
+            IsApiBusy = true;
+
             await RunIsBusyTaskAsync(async () =>
             {
-                //Codigo de pruebas de ingreso
-                if (Username != null && Password != null)
+                if (Connectivity.NetworkAccess == NetworkAccess.Internet)
                 {
-                    try
+                    Usuario = await AppUserApiService.UserLoginAsync(new Usuario() { Username = Username, Password = Password });
+                    if (Usuario == null)
                     {
-                        //using (SqlCommand sqlcmd = new SqlCommand("Select * from dbo.AppUser where Username ='Agente1' and Password ='123456'", con))
-                        //Conexion SQL Server Local (Esta conexion, solo sera de presentacion, se cambiara con una API en el futuro)
-
-                        string serverdbname = "MultAppDB";
-                        string servername = "192.168.0.14";
-                        string serveruser = "Test";
-                        string serverpasword = "123456";
-
-                        string sqlconnectionstring = $"Data Source = {servername}; Initial Catalog = {serverdbname}; User Id={serveruser}; Password={serverpasword};";
-                        SqlConnection sqlconnection = new SqlConnection(sqlconnectionstring);
-
-                        //Abrir y cerrar la base de datos, siempre realizable mientas usemos la base de datos
-                        sqlconnection.Open();
-                        sqlconnection.Close();
-
-                        //LogIn con la Base de Datos
-                        using (SqlConnection con = new SqlConnection(sqlconnectionstring))
-                        {
-                            con.Open();
-                            using (SqlCommand sqlcmd = new SqlCommand("Select * from dbo.AppUser where Username ='" + Username + "' and Password ='" + Password + "'", con))
-                            { 
-                                SqlDataReader datareader = sqlcmd.ExecuteReader();
-
-                                if(datareader.Read())
-                                {
-                                    await AlertService.AlertAsync("!", "Bienvenido: " + Username);
-                                    await NavigationService.NavigationAsync(new MainScreen(), false);
-                                }
-                                else
-                                {
-                                    await AlertService.AlertAsync("Error", "Usuario o Contraseña incorrecta");
-                                }
-                            }
-                            con.Close();
-                        }
-
-
+                        await AlertService.AlertAsync("Error", "Usuario o Contraseña Invalidos");
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        Console.WriteLine(ex.Message);
-                        throw;
+                        await AlertService.AlertAsync("!", "Bienvenido: " + Usuario.Username);
+                        await NavigationService.NavigationAsync(new MainScreen(), false);
                     }
                 }
                 else
                 {
-                    await AlertService.AlertAsync("Error", "Usuario o Contraseña Invalidos");
+                    await AlertService.AlertAsync("No internet connection", "No internet connection detected");
                 }
 
             });
+            IsApiBusy = false;
 
         }
     }

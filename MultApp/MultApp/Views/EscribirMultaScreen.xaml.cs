@@ -1,4 +1,5 @@
-﻿using MultApp.Services;
+﻿using MultApp.Models;
+using MultApp.Services;
 using MultApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,10 @@ namespace MultApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EscribirMultaScreen : ContentPage
     {
-        public EscribirMultaScreen()
+        public EscribirMultaScreen(Persona persona)
         {
             InitializeComponent();
-            BindingContext = new EscribirMultaViewModel(new AlertService(), new NavigationService());
+            BindingContext = new EscribirMultaViewModel(new AlertService(), new NavigationService(), new PenaltyApiService(), persona);
         }
     }
 }

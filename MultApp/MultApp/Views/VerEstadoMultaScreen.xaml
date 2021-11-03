@@ -15,22 +15,19 @@
     <ContentPage.Content>
         <StackLayout Margin="15" Spacing="15">
             <Image HorizontalOptions="CenterAndExpand" BackgroundColor="Red" HeightRequest="110" WidthRequest="110"/>
-            <Label Text="Introduzca la Licencia" Style="{StaticResource EstadoLabels}" Margin="5,0,0,0"/>
-            <Entry Text="{Binding UserBuscarLicencia}" Style="{StaticResource EstadoDatos}" x:Name="BuscarEstado" Margin="5,0,0,0"/>
-            <Button Text="Buscar" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" Command="{Binding BuscarEstado}" />
 
-            <Label Text="No. Licencia" Style="{StaticResource EstadoLabels}" Margin="5,0,0,0"/>
-            <Label Text="{Binding UserLicencia}" Style="{StaticResource EstadoDatos}" Margin="5,0,0,0" x:Name="UserLicencia"/>
+            <Label Text="Documento de identificacion" Style="{StaticResource EstadoLabels}" Margin="5,0,0,0"/>
+            <Label Text="{Binding Persona.Documento}" Style="{StaticResource EstadoDatos}" Margin="5,0,0,0" x:Name="UserLicencia"/>
 
             <Label Text="Nombres" Style="{StaticResource EstadoLabels}" Margin="5,0,0,0"/>
-            <Label Text="{Binding UserNombres}" Style="{StaticResource EstadoDatos}" Margin="5,0,0,0" x:Name="UserNombres"/>
+            <Label Text="{Binding Persona.Nombre}" Style="{StaticResource EstadoDatos}" Margin="5,0,0,0" x:Name="UserNombres"/>
 
             <Label Text="Apellidos" Style="{StaticResource EstadoLabels}" Margin="5,0,0,0"/>
-            <Label Text="{Binding UserApellidos}"  Style="{StaticResource EstadoDatos}" Margin="5,0,0,0" x:Name="UserApellidos"/>
+            <Label Text="{Binding Persona.Apellido}"  Style="{StaticResource EstadoDatos}" Margin="5,0,0,0" x:Name="UserApellidos"/>
 
             <!--<Label Text="Fecha de Nacimiento" Style="{StaticResource EstadoLabels}" Margin="5,0,0,0"/>
             <Label Text="23/08/1998" Style="{StaticResource EstadoDatos}"  Margin="5,0,0,0" x:Name="UserNacimiento" />-->
-            
+
             <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Margin="0,20,0,0" >
                 <Image Source="backIcon" Grid.Column="0" WidthRequest="18" />
                 <Label Text=" Volver" BackgroundColor="Transparent" Grid.Column="1"  TextColor="Black" FontAttributes="Bold" FontSize="18"/>
