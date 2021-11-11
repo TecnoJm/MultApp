@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Text.Json.Serialization;
 
 namespace MultApp.Models
 {
@@ -18,6 +16,6 @@ namespace MultApp.Models
         public string Descripcion { get; set; }
 
         [JsonProperty("Price")]
-        public int Precio { get; set; }
+        public decimal Monto { get; set; }
     }
 }
