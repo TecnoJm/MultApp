@@ -33,9 +33,9 @@ namespace MultApp.ViewModels
 
         private async void OnRegistrarInfraccion()
         {
-            IsApiBusy = true;
             await RunIsBusyTaskAsync(async () =>
             {
+                IsApiBusy = true;
                 if (!string.IsNullOrWhiteSpace(Multa.Description) && !string.IsNullOrWhiteSpace(Multa.Address) && !string.IsNullOrWhiteSpace(LeyInfringida.Descripcion) && LeyInfringida != null && Provincia != null)
                 {
                     Multa.PersonId = Persona.Id;
@@ -56,8 +56,8 @@ namespace MultApp.ViewModels
                 {
                     await AlertService.AlertAsync("Error", "Debe de llenar todos los campos");
                 }
+                IsApiBusy = false;
             });
-            IsApiBusy = false;
         }
 
         private async void OnVolver()
