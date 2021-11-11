@@ -1,8 +1,6 @@
 ﻿using MultApp.Services;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Data.SqlClient;
 using System.Windows.Input;
 using Xamarin.Forms;
 using MultApp.Models;
@@ -25,7 +23,6 @@ namespace MultApp.ViewModels
             await RunIsBusyTaskAsync(async () =>
             {
                 await NavigationService.NavigationPopAsync();
-
             });
         }
     }
