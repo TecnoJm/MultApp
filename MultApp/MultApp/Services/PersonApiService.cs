@@ -2,7 +2,6 @@
 using Refit;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MultApp.Services
@@ -11,13 +10,30 @@ namespace MultApp.Services
     {
         ISerializerService SerializerService { get; } = new SerializerService();
 
-        public async Task<Persona> GetPersonAsync(string documento)
+        public async Task<Persona> GetPersonByDocumentAsync(string documento)
         {
             Persona persona = null;
 
             var refitClient = RestService.For<IPersonApi>(Config.ApiUrl);
 
-            var response = await refitClient.GetPersonAsync(documento, Config.ApiKey);
+            var response = await refitClient.GetPersonByDocumentAsync(documento, Config.ApiKey);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responsejson = await response.Content.ReadAsStringAsync();
+                persona = SerializerService.Deserialize<Persona>(responsejson);
+            }
+
+            return persona;
+        }
+
+        public async Task<Persona> GetPersonByIdAsync(int id)
+        {
+            Persona persona = null;
+
+            var refitClient = RestService.For<IPersonApi>(Config.ApiUrl);
+
+            var response = await refitClient.GetPersonByIdAsync(id, Config.ApiKey);
 
             if (response.IsSuccessStatusCode)
             {

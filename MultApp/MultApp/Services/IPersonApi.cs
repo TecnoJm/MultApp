@@ -2,14 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
+
 using System.Threading.Tasks;
 
 namespace MultApp.Services
 {
     public interface IPersonApi
     {
-        [Get("/person/{document}?api_key={key}")]
-        Task<HttpResponseMessage> GetPersonAsync(string document, string key);
+        [Get("/person/document/{document}?api_key={key}")]
+        Task<HttpResponseMessage> GetPersonByDocumentAsync(string document, string key);
+
+        [Get("/person/id/{id}?api_key={key}")]
+        Task<HttpResponseMessage> GetPersonByIdAsync(int id, string key);
     }
 }
