@@ -3,7 +3,6 @@ using Refit;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MultApp.Services
@@ -12,6 +11,9 @@ namespace MultApp.Services
     {
         [Get("/penalty/types/all?api_key={key}")]
         Task<HttpResponseMessage> GetPenailtiesAsync(string key);
+
+        [Get("/penalty/{id}?api_key={key}")]
+        Task<HttpResponseMessage> GetPenailtiesByPersonIdAsync(int id, string key);
 
         [Post("/penalty/create?api_key={key}")]
         [Headers("Content-Type: application/json")]
