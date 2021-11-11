@@ -6,7 +6,7 @@ namespace MultApp.Models
 {
     public enum UserType
     {
-        Oficial = 1,
+        Agente = 1,
         Conductor = 2
     }
     public class Usuario
