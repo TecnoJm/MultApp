@@ -1,31 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MultApp.Views.MainScreen">
+             x:Class="MultApp.Views.MainScreenAgente"
+             NavigationPage.HasBackButton="False">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Logout" Command="{Binding LogoutCommand}"/>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Resources>
-        <Style x:Key="Options" TargetType="Label" BasedOn="{StaticResource AllText}">
-            <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
-            <Setter Property="FontSize" Value="18" />
-            <Setter Property="FontAttributes" Value="Bold"/>
-            <Style.Triggers>
-                <Trigger TargetType="Label" Property="IsEnabled" Value="False">
-                    <Setter Property="TextColor" Value="Gray"/>
-                </Trigger>
-                <Trigger TargetType="Label" Property="IsEnabled" Value="True">
-                    <Setter Property="TextColor" Value="Black"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <Style x:Key="imgButtons" TargetType="ImageButton">
-            <Setter Property="HorizontalOptions" Value="Center"/>
-            <Setter Property="HeightRequest" Value="130"/>
-            <Setter Property="WidthRequest" Value="140"/>
-            <Setter Property="Margin" Value="5"/>
-        </Style>
         <Style x:Key="EstadoDatos" TargetType="Label">
-            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontSize" Value="18" />
             <Setter Property="TextColor" Value="Black"/>
         </Style>
+
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Margin="11">
@@ -37,7 +24,7 @@
             <Button Text="Buscar" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" Command="{Binding BuscarPersona}" />
 
 
-            <ImageButton Source="" Command="{Binding VerEstadoCommand}" Style="{StaticResource imgButtons}" IsEnabled="{Binding IsEnabled}" Grid.Row="0" Grid.Column="0"/>
+            <ImageButton Source="" Command="{Binding VerEstadoCommand}" Style="{StaticResource imgButtons}"  IsEnabled="{Binding IsEnabled}" Grid.Row="0" Grid.Column="0"/>
             <Label Text="Ver Estado" Style="{StaticResource Options}" IsEnabled="{Binding IsEnabled}"  Grid.Row="1" Grid.Column="0"/>
 
             <ImageButton Source="" Command="{Binding EscribirMultaCommand}" Style="{StaticResource imgButtons}" IsEnabled="{Binding IsEnabled}" Grid.Row="0"  Grid.Column="1"/>
