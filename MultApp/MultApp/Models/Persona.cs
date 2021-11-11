@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Text.Json.Serialization;
 
 namespace MultApp.Models
 {
@@ -22,7 +20,15 @@ namespace MultApp.Models
         public string Documento { get; set; }
 
         [JsonProperty("DOB")]
-        public string FechaDeNacimiento { get; set; }
+        public DateTime FechaDeNacimiento { get; set; }
+
+        public string FechaDeNacimientoFormatted
+        {
+            get
+            {
+                return this.FechaDeNacimiento.ToString("dd/MM/yyyy");
+            }
+        }
 
         [JsonProperty("PictureUrl")]
         public string PictureUrl { get; set; }
