@@ -7,10 +7,6 @@ namespace MultApp
 {
     public static class Config
     {
-<<<<<<< HEAD
-=======
-        public const string ApiKey = "AIzaSyA1s3jcQ0XKC-1HazAxpvBNwXEM3jmzYBo";
->>>>>>> a9abf5e (Paquete BuildTools removido ahora simplemente basta con poner la ApiKey en su propiedad correspondiente con el fin de correr el programa)
         //public const string ApiKey = "Api Key Here";
 
 
