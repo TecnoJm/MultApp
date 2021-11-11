@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+
 
 namespace MultApp.Models
 {
@@ -11,9 +11,10 @@ namespace MultApp.Models
     }
     public class Usuario
     {
+        public int PersonId { get; set; }
+        public UserType UserTypeId { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
 
-        public UserType UserTypeId { get; set; }
     }
 }
