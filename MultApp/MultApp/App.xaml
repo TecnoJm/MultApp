@@ -11,5 +11,17 @@
             <Setter Property="FontSize" Value="32" />
             <Setter Property="FontAttributes" Value="Bold"/>
         </Style>
+        <Style x:Key="Options" TargetType="Label">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+        </Style>
+        <Style x:Key="imgButtons" TargetType="ImageButton">
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="HeightRequest" Value="130"/>
+            <Setter Property="WidthRequest" Value="130"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
     </Application.Resources>
 </Application>
