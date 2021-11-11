@@ -1,14 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Globalization;
 
 namespace MultApp.Models
 {
     public class Multa
     {
-        [JsonProperty("Id")]
-        public int Id { get; set; }
 
         [JsonProperty("PersonId")]
         public int PersonId { get; set; }
@@ -27,5 +25,23 @@ namespace MultApp.Models
 
         [JsonProperty("Paid")]
         public bool Paid { get; set; }
+
+        [JsonProperty("CreatedDate")]
+        public DateTime CreatedDate { get; set; }
+
+        public string CreatedDateFormatted
+        {
+            get
+            {
+                return this.CreatedDate.ToString("dd/MM/yyyy hh:mm:ss");
+            }
+        }
+
+        [JsonProperty("PenaltyType")]
+        public Ley Ley { get; set; }
+
+        [JsonProperty("Province")]
+        public Provincia Provincia { get; set; }
+
     }
 }
