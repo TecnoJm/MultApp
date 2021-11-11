@@ -3,7 +3,6 @@ using Refit;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MultApp.Services
@@ -15,7 +14,7 @@ namespace MultApp.Services
         public async Task<bool> CreatePenaltyAsync(Multa multa)
         {
             bool success = false;
-            var refitClient = RestService.For<IPenaltyApi>("http://192.168.192.1:3000/api");
+            var refitClient = RestService.For<IPenaltyApi>(Config.ApiUrl);
 
             var response = await refitClient.CreatePenaltyAsync(Config.ApiKey, multa);
 
@@ -24,6 +23,23 @@ namespace MultApp.Services
                 success = true;
             }
             return success;
+        }
+
+        public async Task<ObservableCollection<Multa>> GetPenailtiesByPersonIdAsync(int id)
+        {
+            ObservableCollection<Multa> multas = null;
+
+            var refitClient = RestService.For<IPenaltyApi>(Config.ApiUrl);
+
+            var response = await refitClient.GetPenailtiesByPersonIdAsync(id, Config.ApiKey);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responsejson = await response.Content.ReadAsStringAsync();
+                multas = SerializerService.Deserialize<ObservableCollection<Multa>>(responsejson);
+            }
+
+            return multas;
         }
 
         public async Task<ObservableCollection<Ley>> GetPenailtyTypesAsync()
