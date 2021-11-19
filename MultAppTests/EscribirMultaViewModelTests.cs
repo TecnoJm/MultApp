@@ -40,7 +40,7 @@ namespace MultAppTests
             ley.Id = 1;
             ley.Descripcion = "Conducir un vehículo con exceso de pasajero";
             ley.NumeroLey = "Ley 241 art. 104";
-            ley.Monto = 1000.0000;
+            ley.Precio = 1000.0000;
 
             _vm.LeyInfringida = ley;
 
