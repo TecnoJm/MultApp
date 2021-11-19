@@ -19,7 +19,7 @@ namespace MultApp.ViewModels
         public ICommand RegistrarInfraccionCommand { get; }
         public ICommand VolverCommand { get; }
         public Persona Persona { get; set; }
-        public Multa Multa { get; set; } = new Multa();
+        public Multa Multa { get; set; }
         public EscribirMultaViewModel(IAlertService alertService, INavigationService navigationService, IPenaltyApiService penaltyApiService, Persona persona) : base(alertService, navigationService)
         {
             PenaltyApiService = penaltyApiService;
@@ -27,6 +27,7 @@ namespace MultApp.ViewModels
             Leyes = Config.Leyes;
             Provincias = Config.Provincias;
             LeyInfringida = new Ley();
+            Multa = new Multa();
             RegistrarInfraccionCommand = new Command(OnRegistrarInfraccion);
             VolverCommand = new Command(OnVolver);
         }
@@ -36,7 +37,7 @@ namespace MultApp.ViewModels
             await RunIsBusyTaskAsync(async () =>
             {
                 IsApiBusy = true;
-                if (!string.IsNullOrWhiteSpace(Multa.Description) && !string.IsNullOrWhiteSpace(Multa.Address) && !string.IsNullOrWhiteSpace(LeyInfringida.Descripcion) && LeyInfringida != null && Provincia != null)
+                if (!string.IsNullOrWhiteSpace(Multa.Description) && !string.IsNullOrWhiteSpace(Multa.Address) && LeyInfringida != null && Provincia != null)
                 {
                     Multa.PersonId = Persona.Id;
                     Multa.PenaltyTypeId = LeyInfringida.Id;
