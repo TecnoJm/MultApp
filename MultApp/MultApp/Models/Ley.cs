@@ -16,6 +16,6 @@ namespace MultApp.Models
         public string Descripcion { get; set; }
 
         [JsonProperty("Price")]
-        public decimal Monto { get; set; }
+        public double Precio { get; set; }
     }
 }
