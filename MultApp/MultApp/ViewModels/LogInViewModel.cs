@@ -15,8 +15,8 @@ namespace MultApp.ViewModels
         public string Username { get; set; }
         public string Password { get; set; }
         public Usuario Usuario { get; set; }
-        IAppUserApiService AppUserApiService { get; }
-        IPersonApiService PersonApiService { get; }
+        public IAppUserApiService AppUserApiService { get; }
+        public IPersonApiService PersonApiService { get; }
         public ICommand SubmitCommand { protected set; get; }
 
         public LoginViewModel(IAlertService alertService, INavigationService navigationService, IAppUserApiService appUserApiService, IPersonApiService personApiService) : base(alertService, navigationService)
