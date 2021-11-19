@@ -18,7 +18,7 @@ namespace MultApp.Views
         public MainScreenConductor(Persona persona)
         {
             InitializeComponent();
-            BindingContext = new MainScreenConductorViewModel(new AlertService(), new NavigationService(), new PenaltyApiService(), persona);
+            BindingContext = new MainScreenConductorViewModel(new AlertService(), new NavigationService(), persona);
         }
         protected override bool OnBackButtonPressed()
         {
