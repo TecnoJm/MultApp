@@ -8,5 +8,6 @@ namespace MultApp.Services
     public interface IAppUserApiService
     {
         Task<Usuario> UserLoginAsync(Usuario usuario);
+        Task<bool> UserRegisterAsync(Usuario usuario);
     }
 }

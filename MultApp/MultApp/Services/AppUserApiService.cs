@@ -34,6 +34,22 @@ namespace MultApp.Services
             return user;
         }
 
+        public async Task<bool> UserRegisterAsync(Usuario usuario)
+        {
+            bool success = false;
+
+            var refitClient = RestService.For<IAppUserApi>(Config.ApiUrl);
+
+            var response = await refitClient.UserRegisterAsync(Config.ApiKey, usuario);
+
+
+            if (response.IsSuccessStatusCode)
+            {
+                success = true;
+            }
+
+            return success;
+        }
     }
 }
 
