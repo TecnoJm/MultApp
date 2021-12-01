@@ -21,7 +21,7 @@ namespace MultAppTests
         {
             Persona = await PersonApiService.GetPersonByIdAsync(5);
 
-            _vm = new EscribirMultaViewModel(new AlertService(), NavigationService, new PenaltyApiService(), Persona);
+            _vm = new EscribirMultaViewModel(new AlertService(), NavigationService, new PenaltyApiService(), new ProvinceApiService());
         }
 
         [Test]
@@ -45,9 +45,9 @@ namespace MultAppTests
             ley.NumeroLey = "Ley 241 art. 104";
             ley.Precio = 1000.0000;
 
-            _vm.LeyInfringida = ley;
+            _vm.Multa.Ley = ley;
 
-            Assert.IsNotNull(_vm.LeyInfringida, "LeyInfringida is null after being initialized with a valid object");
+            Assert.IsNotNull(_vm.Multa.Ley, "LeyInfringida is null after being initialized with a valid object");
 
         }
 
