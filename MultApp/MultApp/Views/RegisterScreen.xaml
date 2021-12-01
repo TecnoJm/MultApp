@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MultApp.Views.RegisterScreen">
+    <ContentPage.Resources>
+        <Style x:Key="EstadoDatos" TargetType="Label">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Margin="11">
+            <Label Text="Registro" Style="{StaticResource Header}"/>
+            <Label Text="Introduzca el documento de identificacion" Margin="5,0,0,0"/>
+            <Entry Text="{Binding DocumentoDeIdentidad}" Placeholder="Documento de identificacion" Style="{StaticResource EstadoDatos}"  Margin="0,0,0,0"/>
+            <ActivityIndicator IsVisible="{Binding IsApiBusy}" IsRunning="{Binding IsApiBusy}" />
+            <Button Text="Buscar" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" Command="{Binding BuscarPersonaCommand}" />
+
+            <Entry Placeholder="Nombre de usuario" Text="{Binding Usuario.Username}" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding IsEnabled}"/>
+            <Entry Placeholder="Correo electronico" Text="{Binding Usuario.Email}" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding IsEnabled}"/>
+            <Entry Placeholder="Contraseña" Text="{Binding Usuario.Password}" IsPassword="True" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding IsEnabled}"/>
+            <Entry Placeholder="Confirmar contraseña" Text="{Binding ConfirmarCotraseña}" IsPassword="True" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding IsEnabled}"/>
+
+            <Button Text="Registrarse" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" Command="{Binding RegisterCommand}" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding IsEnabled}"/>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
