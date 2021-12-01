@@ -2,6 +2,7 @@
 using MultApp.Services;
 using MultApp.ViewModels;
 using NUnit.Framework;
+using Prism.Navigation;
 using System.Threading.Tasks;
 
 namespace MultAppTests
@@ -9,12 +10,11 @@ namespace MultAppTests
     public class MainScreenAgenteViewModelTests
     {
         MainScreenAgenteViewModel _vm;
-
-
+        INavigationService NavigationService;
         [SetUp]
         public void Setup()
         {
-            _vm = new MainScreenAgenteViewModel(new AlertService(), new NavigationService(), new PersonApiService());
+            _vm = new MainScreenAgenteViewModel(new AlertService(), NavigationService, new PersonApiService(), new PenaltyApiService(), new ProvinceApiService());
         }
 
         [Test]

@@ -4,6 +4,8 @@ using MultApp.Services;
 using MultApp.ViewModels;
 using NUnit.Framework;
 using System.Threading.Tasks;
+using Prism;
+using Prism.Navigation;
 
 namespace MultAppTests
 {
@@ -11,6 +13,7 @@ namespace MultAppTests
     {
         EscribirMultaViewModel _vm;
         IPersonApiService PersonApiService = new PersonApiService();
+        INavigationService NavigationService;
         Persona Persona;
 
         [SetUp]
@@ -18,7 +21,7 @@ namespace MultAppTests
         {
             Persona = await PersonApiService.GetPersonByIdAsync(5);
 
-            _vm = new EscribirMultaViewModel(new AlertService(), new NavigationService(), new PenaltyApiService(), Persona);
+            _vm = new EscribirMultaViewModel(new AlertService(), NavigationService, new PenaltyApiService(), Persona);
         }
 
         [Test]
@@ -53,8 +56,6 @@ namespace MultAppTests
         {
             Multa multa = new Multa();
             multa.PersonId = Persona.Id;
-            multa.PenaltyTypeId = 1;
-            multa.ProvinceId = 1;
             multa.Address = "direccion test";
             multa.Description = "descripcion test";
 

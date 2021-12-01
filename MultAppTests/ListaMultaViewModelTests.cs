@@ -2,6 +2,7 @@
 using MultApp.Services;
 using MultApp.ViewModels;
 using NUnit.Framework;
+using Prism.Navigation;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -11,6 +12,7 @@ namespace MultAppTests
     {
         ListaMultaViewModel _vm;
         IPersonApiService PersonApiService = new PersonApiService();
+        INavigationService NavigationService;
         Persona Persona;
 
         [SetUp]
@@ -18,7 +20,7 @@ namespace MultAppTests
         {
             Persona = await PersonApiService.GetPersonByIdAsync(5);
 
-            _vm = new ListaMultaViewModel(new AlertService(), new NavigationService(), new PenaltyApiService(), Persona);
+            _vm = new ListaMultaViewModel(new AlertService(), NavigationService, new PenaltyApiService());
         }
 
 
