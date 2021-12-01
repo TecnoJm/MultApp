@@ -36,7 +36,7 @@
                 <Label Text="Ley Infringida" Style="{StaticResource CrearHeadersLabels}" Grid.Row="3" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
 
                 <Grid Grid.Row="3" Grid.Column="1" RowDefinitions="45" ColumnDefinitions="*" ColumnSpacing="0" HeightRequest="45">
-                    <Picker Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Leyes}" SelectedItem="{Binding LeyInfringida}"  ItemDisplayBinding="{Binding Descripcion}" Style="{StaticResource Pickers}"/>
+                    <Picker Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Leyes}" SelectedItem="{Binding Multa.Ley}"  ItemDisplayBinding="{Binding Descripcion}" Style="{StaticResource Pickers}"/>
                 </Grid>
 
                 <Label Text="Descripcion" Style="{StaticResource CrearHeadersLabels}" Grid.Row="4" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
@@ -49,7 +49,7 @@
                 <Label Text="Provincia" Style="{StaticResource CrearHeadersLabels}" Grid.Row="6" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
 
                 <Grid Grid.Row="6" Grid.Column="1" RowDefinitions="45" ColumnDefinitions="*" ColumnSpacing="0" HeightRequest="45">
-                    <Picker Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Provincias}" SelectedItem="{Binding Provincia}"  ItemDisplayBinding="{Binding Descripcion}" Style="{StaticResource Pickers}"/>
+                    <Picker Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Provincias}" SelectedItem="{Binding Multa.Provincia}"  ItemDisplayBinding="{Binding Descripcion}" Style="{StaticResource Pickers}"/>
                 </Grid>
             </Grid>
 

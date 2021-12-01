@@ -6,30 +6,41 @@ using System.Data.SqlClient;
 using Xamarin.Forms;
 using MultApp.Services;
 using MultApp.Models;
+using Prism.Navigation;
+using System.Threading.Tasks;
 
 namespace MultApp.ViewModels
 {
-    public class EscribirMultaViewModel : BaseViewModel
+    public class EscribirMultaViewModel : BaseViewModel, IInitialize
     {
         public ObservableCollection<Ley> Leyes { get; set; }
         public ObservableCollection<Provincia> Provincias { get; set; }
-        public Ley LeyInfringida { get; set; }
         public Provincia Provincia { get; set; }
+
+        public IProvinceApiService ProvinceApiService { get; }
         public IPenaltyApiService PenaltyApiService { get; }
         public ICommand RegistrarInfraccionCommand { get; }
         public ICommand VolverCommand { get; }
         public Persona Persona { get; set; }
         public Multa Multa { get; set; }
-        public EscribirMultaViewModel(IAlertService alertService, INavigationService navigationService, IPenaltyApiService penaltyApiService, Persona persona) : base(alertService, navigationService)
+
+        public EscribirMultaViewModel(IAlertService alertService, INavigationService navigationService, IPenaltyApiService penaltyApiService, IProvinceApiService provinceApiService) : base(alertService, navigationService)
         {
             PenaltyApiService = penaltyApiService;
-            Persona = persona;
+            ProvinceApiService = provinceApiService;
             Leyes = Config.Leyes;
             Provincias = Config.Provincias;
-            LeyInfringida = new Ley();
             Multa = new Multa();
             RegistrarInfraccionCommand = new Command(OnRegistrarInfraccion);
             VolverCommand = new Command(OnVolver);
+        }
+
+        public void Initialize(INavigationParameters parameters)
+        {
+            if (parameters.TryGetValue(Config.PersonaParam, out Persona persona))
+            {
+                Persona = persona;
+            }
         }
 
         private async void OnRegistrarInfraccion()
@@ -37,26 +48,26 @@ namespace MultApp.ViewModels
             await RunIsBusyTaskAsync(async () =>
             {
                 IsApiBusy = true;
-                if (!string.IsNullOrWhiteSpace(Multa.Description) && !string.IsNullOrWhiteSpace(Multa.Address) && LeyInfringida != null && Provincia != null)
-                {
-                    Multa.PersonId = Persona.Id;
-                    Multa.PenaltyTypeId = LeyInfringida.Id;
-                    Multa.ProvinceId = Provincia.Id;
-                    bool success = await PenaltyApiService.CreatePenaltyAsync(Multa);
-                    if (success)
-                    {
-                        await AlertService.AlertAsync("Exito", "Multa creada con exito");
-                        Multa = new Multa();
-                    }
-                    else
-                    {
-                        await AlertService.AlertAsync("Error", "Ha ocurrido un error al intentar crear la multa");
-                    }
-                }
-                else
+                if (string.IsNullOrWhiteSpace(Multa.Description) || string.IsNullOrWhiteSpace(Multa.Address))
                 {
                     await AlertService.AlertAsync("Error", "Debe de llenar todos los campos");
+                    IsApiBusy = false;
+                    return;
                 }
+
+
+                Multa.PersonId = Persona.Id;
+                bool success = await PenaltyApiService.CreatePenaltyAsync(Multa);
+                if (!success)
+                {
+                    await AlertService.AlertAsync("Error", "Ha ocurrido un error al intentar crear la multa");
+                    IsApiBusy = false;
+                    return;
+                }
+
+                await AlertService.AlertAsync("Exito", "Multa creada con exito");
+                await NavigationService.GoBackAsync();
+                
                 IsApiBusy = false;
             });
         }
@@ -65,9 +76,10 @@ namespace MultApp.ViewModels
         {
             await RunIsBusyTaskAsync(async () =>
             {
-                await NavigationService.NavigationPopAsync();
-
+                await NavigationService.GoBackAsync();
             });
         }
+
+
     }
 }

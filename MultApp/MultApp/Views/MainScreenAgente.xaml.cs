@@ -16,7 +16,6 @@ namespace MultApp.Views
         public MainScreenAgente()
         {
             InitializeComponent();
-            BindingContext = new MainScreenAgenteViewModel(new AlertService(), new NavigationService(), new PersonApiService());
         }
         protected override bool OnBackButtonPressed()
         {

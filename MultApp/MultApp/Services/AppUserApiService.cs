@@ -12,26 +12,29 @@ namespace MultApp.Services
         ISerializerService SerializerService { get; } = new SerializerService();
         public async Task<Usuario> UserLoginAsync(Usuario usuario)
         {
-            Usuario user = null;
-
 
             var refitClient = RestService.For<IAppUserApi>(Config.ApiUrl);
 
             var response = await refitClient.UserLoginAsync(Config.ApiKey, usuario);
 
-            //var client = new HttpClient();
-
-            //var content = new StringContent(usuario, Encoding.UTF8, "application/json");
-
-            //var response = await client.PostAsync($"login?api_key={ApiKey}", content).ConfigureAwait(false);
-
             if (response.IsSuccessStatusCode)
             {
                 var responsejson = await response.Content.ReadAsStringAsync();
-                user = SerializerService.Deserialize<Usuario>(responsejson);
+                usuario = SerializerService.Deserialize<Usuario>(responsejson);
             }
 
-            return user;
+            //switch (response.StatusCode)
+            //{
+            //    case System.Net.HttpStatusCode.Accepted:
+            //        break;
+
+            //    case System.Net.HttpStatusCode.Unauthorized:
+            //        break;
+            //    default:
+            //        break;
+            //}
+
+            return usuario;
         }
 
         public async Task<bool> UserRegisterAsync(Usuario usuario)

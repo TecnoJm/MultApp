@@ -13,17 +13,15 @@ namespace MultApp.Views
         public LogIn()
         {
             InitializeComponent();
-            var logInViewModel = new LoginViewModel(new AlertService(), new NavigationService(), new AppUserApiService(), new PersonApiService());
-            BindingContext = logInViewModel;
 
-            Email.Completed += (object sender, EventArgs e) =>
+            Username.Completed += (object sender, EventArgs e) =>
             {
                 Password.Focus();
             };
 
             Password.Completed += (object sender, EventArgs e) =>
             {
-                logInViewModel.SubmitCommand.Execute(null);
+                LoginButton.Command.Execute(null);
             };
         }
     }

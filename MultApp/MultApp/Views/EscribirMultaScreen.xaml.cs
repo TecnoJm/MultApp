@@ -14,10 +14,9 @@ namespace MultApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EscribirMultaScreen : ContentPage
     {
-        public EscribirMultaScreen(Persona persona)
+        public EscribirMultaScreen()
         {
             InitializeComponent();
-            BindingContext = new EscribirMultaViewModel(new AlertService(), new NavigationService(), new PenaltyApiService(), persona);
         }
     }
 }

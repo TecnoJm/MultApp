@@ -15,10 +15,9 @@ namespace MultApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VerEstadoMultaScreen : ContentPage
     {
-        public VerEstadoMultaScreen(Persona persona)
+        public VerEstadoMultaScreen()
         {
             InitializeComponent();
-            BindingContext = new VerEstadoMultaViewModel(new AlertService(), new NavigationService(), persona);
         }
     }
 }

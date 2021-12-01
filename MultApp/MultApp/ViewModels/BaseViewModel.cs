@@ -1,6 +1,7 @@
 ﻿using MultApp.Services;
+using Prism.Navigation;
+using Prism.Services;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 

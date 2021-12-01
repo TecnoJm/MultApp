@@ -1,50 +1,44 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using MultApp.Views;
-using MultApp.Services;
+﻿using MultApp.Services;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using MultApp.Models;
+using Prism;
+using Prism.Unity;
+using Prism.Ioc;
+using MultApp.Views;
+using MultApp.ViewModels;
+using Xamarin.Forms;
 
 namespace MultApp
 {
-    public partial class App : Application
+    public partial class App : PrismApplication
     {
-        public IPenaltyApiService penaltyApiService = new PenaltyApiService();
-        public IProvinceApiService provinceApiService = new ProvinceApiService();
-        public App()
+        public App(IPlatformInitializer platformInitializer = null) : base(platformInitializer) { }
+
+        protected override async void OnInitialized()
         {
             InitializeComponent();
-            //Nueva pantalla de inicio: LogIn
-            LogIn LogInView = new LogIn();
-            NavigationPage.SetHasNavigationBar(LogInView, false);
-            MainPage = new NavigationPage(LogInView);
-
+            await NavigationService.NavigateAsync($"{Config.NavigationPage}/{Config.LoginScreen}");
         }
 
-        protected override async void OnStart()
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Config.Leyes = await GetLeyes();
-            Config.Provincias = await GetProvincias();
+            containerRegistry.RegisterForNavigation<NavigationPage>(Config.NavigationPage);
+            containerRegistry.RegisterForNavigation<LogIn, LoginViewModel>(Config.LoginScreen);
+            containerRegistry.RegisterForNavigation<RegisterScreen, RegisterViewModel>(Config.RegisterScreen);
+            containerRegistry.RegisterForNavigation<MainScreenAgente, MainScreenAgenteViewModel>(Config.MainScreenAgente);
+            containerRegistry.RegisterForNavigation<MainScreenConductor, MainScreenConductorViewModel>(Config.MainScreenConductor);
+            containerRegistry.RegisterForNavigation<ListaMultaScreen, ListaMultaViewModel>(Config.ListaMultaScreen);
+            containerRegistry.RegisterForNavigation<EscribirMultaScreen, EscribirMultaViewModel>(Config.EscribirMultaScreen);
+            containerRegistry.RegisterForNavigation<VerEstadoMultaScreen, VerEstadoMultaViewModel>(Config.VerEstadoMultaScreen);
 
-        }
 
-        protected override void OnSleep()
-        {
+            containerRegistry.Register<IAppUserApiService, AppUserApiService>();
+            containerRegistry.Register<IPenaltyApiService, PenaltyApiService>();
+            containerRegistry.Register<IPersonApiService, PersonApiService>();
+            containerRegistry.Register<IProvinceApiService, ProvinceApiService>();
+            containerRegistry.Register<IAlertService, AlertService>();
         }
-
-        protected override void OnResume()
-        {
-        }
-
-        private async Task<ObservableCollection<Ley>> GetLeyes()
-        {
-            return await penaltyApiService.GetPenailtyTypesAsync();
-        }
-        private async Task<ObservableCollection<Provincia>> GetProvincias()
-        {
-            return await provinceApiService.GetProvincesAsync();
-        }
+       
     }
 }

@@ -29,9 +29,8 @@
                 VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand"
                 HasUnevenRows="True"
-                
-         
                 >
+                
                 <ListView.Behaviors>
                     <xct:EventToCommandBehavior EventName="ItemSelected"
                                               Command="{Binding TappedCommand}"

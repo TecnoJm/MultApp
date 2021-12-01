@@ -16,10 +16,9 @@ namespace MultApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListaMultaScreen : ContentPage
     {
-        public ListaMultaScreen(Persona persona)
+        public ListaMultaScreen()
         {
             InitializeComponent();
-            BindingContext = new ListaMultaViewModel(new AlertService(), new NavigationService(), new PenaltyApiService(), persona);
 
         }
 

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
+<prism:PrismApplication  xmlns:prism="http://prismlibrary.com" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MultApp.App">
-    <Application.Resources>
+    <prism:PrismApplication.Resources>
         <Style x:Key="AllText" TargetType="Label">
             <Setter Property="TextColor" Value="Black" />
         </Style>
@@ -23,5 +23,5 @@
             <Setter Property="WidthRequest" Value="130"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
-    </Application.Resources>
-</Application>
+    </prism:PrismApplication.Resources>
+</prism:PrismApplication>

@@ -15,10 +15,9 @@ namespace MultApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainScreenConductor : ContentPage
     {
-        public MainScreenConductor(Persona persona)
+        public MainScreenConductor()
         {
             InitializeComponent();
-            BindingContext = new MainScreenConductorViewModel(new AlertService(), new NavigationService(), persona);
         }
         protected override bool OnBackButtonPressed()
         {
