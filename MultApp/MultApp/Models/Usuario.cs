@@ -13,17 +13,24 @@ namespace MultApp.Models
     }
     public class Usuario
     {
-        [JsonProperty("personId")]
-        public int PersonId { get; set; }
 
-        [JsonProperty("userTypeId")]
+        [JsonProperty("UserTypeId")]
         public UserType UserTypeId { get; set; }
 
-        [JsonProperty("username")]
+        [JsonProperty("Username")]
         public string Username { get; set; }
 
-        [JsonProperty("password")]
+        [JsonProperty("Email")]
+        public string Email { get; set; }
+
+        [JsonProperty("Password")]
         public string Password { get; set; }
+
+        [JsonProperty("Enabled")]
+        public bool Activo { get; set; }
+
+        [JsonProperty("Person")]
+        public Persona Persona { get; set; }
 
     }
 }
