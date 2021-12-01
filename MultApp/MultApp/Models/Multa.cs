@@ -11,12 +11,6 @@ namespace MultApp.Models
         [JsonProperty("PersonId")]
         public int PersonId { get; set; }
 
-        [JsonProperty("PenaltyTypeId")]
-        public int PenaltyTypeId { get; set; }
-
-        [JsonProperty("ProvinceId")]
-        public int ProvinceId { get; set; }
-
         [JsonProperty("Description")]
         public string Description { get; set; }
 
