@@ -16,7 +16,7 @@ namespace MultAppTests
         [SetUp]
         public void Setup()
         {
-            _vm = new LoginViewModel(new AlertService(), NavigationService, new AppUserApiService(), new PersonApiService());
+            _vm = new LoginViewModel(new AlertService(), NavigationService, new AppUserApiService());
         }
 
         [Test]
@@ -62,9 +62,10 @@ namespace MultAppTests
         [Test]
         public async Task Login_ApiGetPerson_By_Correct_Person_Id()
         {
-            Persona persona = await _vm.PersonApiService.GetPersonByIdAsync(5);
-            
-            Assert.IsNotNull(persona, "Unable to get person from web api");
+            Usuario usuario = await _vm.AppUserApiService.UserLoginAsync(new Usuario() { Username = _vm.Usuario.Username, Password = _vm.Usuario.Password });
+           
+
+            Assert.IsNotNull(usuario.Persona, "Unable to get person from web api");
         }
 
     }
