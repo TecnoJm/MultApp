@@ -6,6 +6,7 @@ using NUnit.Framework;
 using System.Threading.Tasks;
 using Prism;
 using Prism.Navigation;
+using System.Collections.ObjectModel;
 
 namespace MultAppTests
 {
@@ -13,6 +14,8 @@ namespace MultAppTests
     {
         EscribirMultaViewModel _vm;
         IPersonApiService PersonApiService = new PersonApiService();
+        IPenaltyApiService PenaltyApiService = new PenaltyApiService();
+        IProvinceApiService ProvinceApiService = new ProvinceApiService();
         INavigationService NavigationService;
         Persona Persona;
 
@@ -54,10 +57,15 @@ namespace MultAppTests
         [Test]
         public async Task EscribirMulta_Penalty_Created_Succesfully()
         {
+            ObservableCollection<Ley> Leyes = await PenaltyApiService.GetPenailtyTypesAsync();
+            ObservableCollection<Provincia> Provincias = await ProvinceApiService.GetProvincesAsync();
             Multa multa = new Multa();
-            multa.PersonId = Persona.Id;
+            multa.PersonId = 5;
             multa.Address = "direccion test";
             multa.Description = "descripcion test";
+            multa.Ley = Leyes[0];
+            multa.Provincia = Provincias[0];
+
 
             bool success = await _vm.PenaltyApiService.CreatePenaltyAsync(multa);
 

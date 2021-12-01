@@ -60,10 +60,12 @@ namespace MultAppTests
         }
 
         [Test]
-        public async Task Login_ApiGetPerson_By_Correct_Person_Id()
+        public async Task Login_ApiGetPerson_By_Correct_Login ()
         {
+            _vm.Usuario.Username = "demetrio";
+            _vm.Usuario.Password = "123";
+
             Usuario usuario = await _vm.AppUserApiService.UserLoginAsync(new Usuario() { Username = _vm.Usuario.Username, Password = _vm.Usuario.Password });
-           
 
             Assert.IsNotNull(usuario.Persona, "Unable to get person from web api");
         }
