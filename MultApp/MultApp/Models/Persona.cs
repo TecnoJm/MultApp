@@ -15,6 +15,7 @@ namespace MultApp.Models
         [JsonProperty("LastName")]
         public string Apellido { get; set; }
 
+        public string NombreCompleto => $"{Nombre} {Apellido}";
 
         [JsonProperty("DocumentNumber")]
         public string Documento { get; set; }

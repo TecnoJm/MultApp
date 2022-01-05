@@ -9,11 +9,12 @@ namespace MultApp.ViewModels
     public class VerEstadoMultaViewModel : BaseViewModel, IInitialize
     {
         public Persona Persona { get; set; }
-        public ICommand VolverCommand { get; }
+
+        public ICommand ListaMultaCommand { get; }
         public VerEstadoMultaViewModel(IAlertService alertService, INavigationService navigationService, Persona persona) : base(alertService, navigationService)
         {
             Persona = persona;
-            VolverCommand = new Command(OnVolver);
+            ListaMultaCommand = new Command(OnListaMulta);
         }
         public void Initialize(INavigationParameters parameters)
         {
@@ -23,12 +24,17 @@ namespace MultApp.ViewModels
             }
         }
 
-        private async void OnVolver()
+        private async void OnListaMulta()
         {
             await RunIsBusyTaskAsync(async () =>
             {
-                await NavigationService.GoBackAsync();
+                await NavigationService.NavigateAsync($"{Config.ListaMultaScreen}", new NavigationParameters()
+                {
+                    {Config.PersonaParam, Persona}
+                });
             });
+
         }
+
     }
 }

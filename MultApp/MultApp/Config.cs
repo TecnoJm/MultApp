@@ -9,6 +9,7 @@ namespace MultApp
     {
         public const string ApiKey = "AIzaSyA1s3jcQ0XKC-1HazAxpvBNwXEM3jmzYBo";
 
+        //public const string ApiUrl = "http://192.168.0.9:3000/api";
         public const string ApiUrl = "https://multapp-api.herokuapp.com/api";
 
         public static ObservableCollection<Ley> Leyes { get; set; }
@@ -22,6 +23,7 @@ namespace MultApp
         public const string ListaMultaScreen = "ListMulta";
         public const string LoginScreen = "Login";
         public const string RegisterScreen = "Register";
+        public const string RegisterScreen2 = "Register22";
         public const string NavigationPage = "Navigation";
 
         //Navigation Parameters name

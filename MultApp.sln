@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31702.278
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1758
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultApp.Android", "MultApp\MultApp.Android\MultApp.Android.csproj", "{4A68FA46-816F-4434-98C4-9CD8E5EDA65A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultApp.iOS", "MultApp\MultApp.iOS\MultApp.iOS.csproj", "{79851E11-1C77-42A4-8C8E-EECB8DA7B25F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultApp", "MultApp\MultApp\MultApp.csproj", "{C2CCD213-65CF-4BC6-AF59-83D299E00938}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultApp", "MultApp\MultApp\MultApp.csproj", "{C2CCD213-65CF-4BC6-AF59-83D299E00938}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultAppTests", "MultAppTests\MultAppTests.csproj", "{0B9E5F3D-E0AC-4514-BE09-54485A73CDF0}"
 EndProject

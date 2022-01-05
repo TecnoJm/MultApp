@@ -1,29 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MultApp.Views.RegisterScreen">
+             xmlns:controls="clr-namespace:Multapp.Controls"
+             x:Class="MultApp.Views.RegisterScreen"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
-        <Style x:Key="EstadoDatos" TargetType="Label">
-            <Setter Property="FontSize" Value="18" />
-            <Setter Property="TextColor" Value="Black"/>
-        </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Margin="11">
-            <Label Text="Registro" Style="{StaticResource Header}"/>
-            <Label Text="Introduzca el documento de identificacion" Margin="5,0,0,0"/>
-            <Entry Text="{Binding DocumentoDeIdentidad}" Placeholder="Documento de identificacion" Style="{StaticResource EstadoDatos}"  Margin="0,0,0,0"/>
-            <ActivityIndicator IsVisible="{Binding IsApiBusy}" IsRunning="{Binding IsApiBusy}" />
-            <Button Text="Buscar" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" Command="{Binding BuscarPersonaCommand}" />
+        <Grid>
+            <StackLayout Padding="0" Margin="0" >
+                <Frame Padding="0" Margin="0" VerticalOptions="FillAndExpand">
+                    <Image  Source="PantallaRegistro" Aspect="AspectFill" Margin="0,0,0,-50"></Image>
+                </Frame>
 
-            <Entry Placeholder="Nombre de usuario" Text="{Binding Usuario.Username}" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding IsEnabled}"/>
-            <Entry Placeholder="Correo electronico" Text="{Binding Usuario.Email}" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding IsEnabled}"/>
-            <Entry Placeholder="Contraseña" Text="{Binding Usuario.Password}" IsPassword="True" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding IsEnabled}"/>
-            <Entry Placeholder="Confirmar contraseña" Text="{Binding ConfirmarCotraseña}" IsPassword="True" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding IsEnabled}"/>
+            </StackLayout>
+            <StackLayout Margin="11">
+                <Grid ColumnDefinitions="Auto,*" Margin="0,10,0,0">
+                    <ImageButton Grid.Column="0" Source="BackButton.png" Aspect="AspectFit" BackgroundColor="Transparent" Command="{Binding BackCommand}"/>
+                </Grid>
 
-            <Button Text="Registrarse" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" Command="{Binding RegisterCommand}" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding IsEnabled}"/>
+                <Label Text="Registro" Style="{StaticResource Headers}" HorizontalOptions="Center"/>
+                <Label Text="Introduzca el documento de identificacion" Margin="5,0,0,0" Style="{StaticResource TextoNormal}" HorizontalOptions="Center"/>
+                <controls:WhiteLineEntry Text="{Binding DocumentoDeIdentidad}" Placeholder="Documento de identificacion" Style="{StaticResource TextoNormal}" PlaceholderColor="{StaticResource Color2}" Margin="0"/>
+                <ActivityIndicator IsVisible="{Binding IsApiBusy}" IsRunning="{Binding IsApiBusy}" />
+                <Button Text="Buscar" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" Command="{Binding BuscarPersonaCommand}" />
+
+                <!--<Entry Placeholder="Nombre de usuario" Text="{Binding Usuario.Username}" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding IsEnabled}"/>
+                <Entry Placeholder="Correo electronico" Text="{Binding Usuario.Email}" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding IsEnabled}"/>
+                <Entry Placeholder="Contraseña" Text="{Binding Usuario.Password}" IsPassword="True" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding IsEnabled}"/>
+                <Entry Placeholder="Confirmar contraseña" Text="{Binding ConfirmarCotraseña}" IsPassword="True" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding IsEnabled}"/>
+
+                <Button Text="Registrarse" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" Command="{Binding RegisterCommand}" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding IsEnabled}"/>-->
 
 
-        </StackLayout>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

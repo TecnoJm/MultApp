@@ -23,7 +23,6 @@ namespace MultApp.ViewModels
         public ICommand VerEstadoCommand { get; }
         public ICommand EscribirMultaCommand { get; }
         public ICommand BuscarPersona { get; }
-        public ICommand LogoutCommand { get; }
 
 
 
@@ -35,7 +34,6 @@ namespace MultApp.ViewModels
             VerEstadoCommand = new Command(OnVerEstado);
             EscribirMultaCommand = new Command(OnEscribirMulta);
             BuscarPersona = new Command(OnBuscarPersona); 
-            LogoutCommand = new Command(OnLogout);
         }
 
         public async void OnNavigatedTo(INavigationParameters parameters)
@@ -79,6 +77,13 @@ namespace MultApp.ViewModels
 
                 IsEnabled = false;
 
+                if (string.IsNullOrWhiteSpace(DocumentoDeIdentidad))
+                {
+                    await AlertService.AlertAsync("Error", "No ha ingresado un documento de identidad");
+                    IsApiBusy = false;
+                    return;
+                }
+
                 Persona = await PersonApiService.GetPersonByDocumentAsync(DocumentoDeIdentidad);
                 if (Persona == null)
                 {
@@ -95,14 +100,7 @@ namespace MultApp.ViewModels
             });
 
         }
-        private async void OnLogout()
-        {
-            await RunIsBusyTaskAsync(async () =>
-            {
-                await NavigationService.GoBackAsync();
-            });
 
-        }
 
         public void OnNavigatedFrom(INavigationParameters parameters)
         {

@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="MultApp.Views.ListaMultaScreen"
-              x:Name="listaMulta">
+              x:Name="listaMulta"
+             NavigationPage.HasNavigationBar="False"
+             >
     <ContentPage.Resources>
         <Style x:Key="TableHeader" TargetType="Label" BasedOn="{StaticResource AllText}">
             <Setter Property="FontAttributes" Value="Bold"/>
@@ -13,16 +15,27 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Multas" Style="{StaticResource Header}"/>
-            <Grid ColumnDefinitions="*,*" Margin="10,10,10,0" HeightRequest="25">
-                <Label Text="Ley Infringida" Style="{StaticResource TableHeader}" Grid.Column="0"/>
-                <Label Text="Fecha" Style="{StaticResource TableHeader}" Grid.Column="1"  HorizontalTextAlignment="Center"/>
-            </Grid>
+        <Grid>
+            <StackLayout Padding="0" Margin="0" >
+                <Frame Padding="0" Margin="0" VerticalOptions="FillAndExpand">
+                    <Image  Source="PantallaVerMultas" Aspect="AspectFill" Margin="0,0,0,-60"></Image>
+                </Frame>
 
-            <BoxView Color="Black" HeightRequest="2" />
-            <ActivityIndicator IsVisible="{Binding IsApiBusy}" IsRunning="{Binding IsApiBusy}"/>
-            <ListView
+            </StackLayout>
+            <StackLayout >
+                <Grid ColumnDefinitions="Auto,*" Margin="11,21,11,0">
+                    <ImageButton Grid.Column="0" Source="BackButton.png" Aspect="AspectFit" BackgroundColor="Transparent" Command="{Binding BackCommand}" />
+                </Grid>
+                
+                <Label Text="Multas" Style="{StaticResource Header}"/>
+                <Grid ColumnDefinitions="*,*" Margin="10,10,10,0" HeightRequest="25">
+                    <Label Text="Ley Infringida" Style="{StaticResource TableHeader}" Grid.Column="0"/>
+                    <Label Text="Fecha" Style="{StaticResource TableHeader}" Grid.Column="1"  HorizontalTextAlignment="Center"/>
+                </Grid>
+
+                <BoxView Color="{StaticResource Color2}" HeightRequest="2" />
+                <ActivityIndicator IsVisible="{Binding IsApiBusy}" IsRunning="{Binding IsApiBusy}"/>
+                <ListView
                 ItemSelected="ListViewItemSelected"
                 ItemsSource="{Binding Multas}"
                 SeparatorVisibility="None"
@@ -30,24 +43,25 @@
                 HorizontalOptions="FillAndExpand"
                 HasUnevenRows="True"
                 >
-                
-                <ListView.Behaviors>
-                    <xct:EventToCommandBehavior EventName="ItemSelected"
+
+                    <ListView.Behaviors>
+                        <xct:EventToCommandBehavior EventName="ItemSelected"
                                               Command="{Binding TappedCommand}"
                                               EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}" />
-                </ListView.Behaviors>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid ColumnDefinitions="*,*" Margin="5" Padding="5">
-                                <Label Text="{Binding Ley.Descripcion}" Style="{StaticResource AllText}" Grid.Column="0" VerticalTextAlignment="Center"/>
-                                <Label Text="{Binding CreatedDateFormatted}" Style="{StaticResource AllText}" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                    </ListView.Behaviors>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid ColumnDefinitions="*,*" Margin="5" Padding="5">
+                                    <Label Text="{Binding Ley.Descripcion}" Style="{StaticResource AllText}" Grid.Column="0" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding CreatedDateFormatted}" Style="{StaticResource AllText}" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
-        </StackLayout>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

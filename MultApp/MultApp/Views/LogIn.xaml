@@ -1,36 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"  
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:Multapp.Controls"
              x:Class="MultApp.Views.LogIn"  
              BackgroundColor="White"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             
+             >
 
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" VerticalOptions="Center" Padding="30" Spacing="40">
-            <Image Source="Logo.png" HeightRequest="150"></Image>
-            <BoxView HeightRequest="-51"/>
-            <Image HorizontalOptions="Center" WidthRequest="300" Source="maco.jpg"/>
-            <ActivityIndicator IsVisible="{Binding IsApiBusy}" IsRunning="{Binding IsApiBusy}" />
-            <Frame BackgroundColor="#01A93E" HasShadow="False">
-                <StackLayout Orientation="Vertical" Spacing="10">
-                    <Entry x:Name="Username" Text="{Binding Usuario.Username}" Placeholder="Nombre de usuario"   
-                           HeightRequest="40"   
-                           Keyboard="Text"  
-                           TextColor="White"/>
-                    <Entry x:Name="Password" Text="{Binding Usuario.Password}" Placeholder="Contraseña"   
-                           HeightRequest="40"   
-                           IsPassword="True"  
-                           TextColor="White"
-                           />
-                </StackLayout>
-            </Frame>
-            <Button Command="{Binding LoginCommand}" Text="Ingresar" TextColor="White"  
-                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
-                    BackgroundColor="Black" x:Name="LoginButton"/>
-            <Button Command="{Binding RegisterCommand}" Text="Registro" TextColor="White"  
-                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
-                    BackgroundColor="Black" x:Name="RegisterButton"/>
+        <Grid>
+            <StackLayout Padding="0" Margin="0" >
+                <Frame Padding="0" Margin="0" VerticalOptions="FillAndExpand">
+                    <Image  Source="PantallaInicio" Aspect="AspectFill"></Image>
+                </Frame>
 
-        </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" VerticalOptions="Center" Padding="30">
+                  
+
+                <Image Source="multAppTexto.png" HeightRequest="150" Margin="0,0,0,50"></Image>
+                <BoxView HeightRequest="-51"/>
+                <Image HorizontalOptions="Center" WidthRequest="300" Source="maco.jpg"/>
+                <ActivityIndicator IsVisible="{Binding IsApiBusy}" IsRunning="{Binding IsApiBusy}" />
+                <Frame BackgroundColor="Transparent" HasShadow="False">
+                    <StackLayout Orientation="Vertical" Spacing="10">
+                        <controls:WhiteLineEntry x:Name="Username" Text="{Binding Usuario.Username}" Placeholder="Nombre de usuario"   
+                               HeightRequest="40"   
+                               Keyboard="Text"  
+                               Style="{StaticResource TextoNormal}"
+                               PlaceholderColor="{StaticResource Color2}" />
+
+                        <controls:WhiteLineEntry  x:Name="Password" Text="{Binding Usuario.Password}" Placeholder="Contraseña"   
+                               HeightRequest="40"   
+                               IsPassword="True"  
+                               Style="{StaticResource TextoNormal}"
+                               PlaceholderColor="{StaticResource Color2}" />
+                    </StackLayout>
+                </Frame>
+
+                <ImageButton Source="botonIngresar" BackgroundColor="Transparent" Command="{Binding LoginCommand}" Aspect="AspectFill"  HorizontalOptions="Center" x:Name="LoginButton" Margin="10" Padding="-7,-5,-7,-11" CornerRadius="16"/>
+                <ImageButton  Source="botonRegistro" BackgroundColor="Transparent" Command="{Binding RegisterCommand}" Aspect="AspectFill" HorizontalOptions="Center" x:Name="RegisterButton"  Margin="10" Padding="-7,-5,-7,-11" CornerRadius="16"/>
+                <!--<Button Command="{Binding LoginCommand}" Text="Ingresar" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="Black" x:Name="LoginButton"/>-->
+                <!--<Button Command="{Binding RegisterCommand}" Text="Registro" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="Black" x:Name="RegisterButton"/>-->
+
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
-</ContentPage> 
+</ContentPage>

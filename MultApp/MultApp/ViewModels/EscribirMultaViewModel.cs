@@ -58,6 +58,7 @@ namespace MultApp.ViewModels
 
                 Multa.PersonId = Persona.Id;
                 bool success = await PenaltyApiService.CreatePenaltyAsync(Multa);
+
                 if (!success)
                 {
                     await AlertService.AlertAsync("Error", "Ha ocurrido un error al intentar crear la multa");

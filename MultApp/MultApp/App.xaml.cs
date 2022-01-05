@@ -23,9 +23,11 @@ namespace MultApp
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+
             containerRegistry.RegisterForNavigation<NavigationPage>(Config.NavigationPage);
             containerRegistry.RegisterForNavigation<LogIn, LoginViewModel>(Config.LoginScreen);
             containerRegistry.RegisterForNavigation<RegisterScreen, RegisterViewModel>(Config.RegisterScreen);
+            containerRegistry.RegisterForNavigation<RegisterScreen2, Register2ViewModel>(Config.RegisterScreen2);
             containerRegistry.RegisterForNavigation<MainScreenAgente, MainScreenAgenteViewModel>(Config.MainScreenAgente);
             containerRegistry.RegisterForNavigation<MainScreenConductor, MainScreenConductorViewModel>(Config.MainScreenConductor);
             containerRegistry.RegisterForNavigation<ListaMultaScreen, ListaMultaViewModel>(Config.ListaMultaScreen);

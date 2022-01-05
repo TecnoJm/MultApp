@@ -14,12 +14,10 @@ namespace MultApp.ViewModels
     {
         public Persona Persona { get; set; }
         public ICommand ListaMultaCommand { get; }
-        public ICommand LogoutCommand { get; }
 
         public MainScreenConductorViewModel(IAlertService alertService, INavigationService navigationService) : base(alertService, navigationService)
         {
             ListaMultaCommand = new DelegateCommand(OnListaMulta);
-            LogoutCommand = new DelegateCommand(OnLogout);
         }
 
         public void Initialize(INavigationParameters parameters)
@@ -42,13 +40,5 @@ namespace MultApp.ViewModels
 
         }
 
-        private async void OnLogout()
-        {
-            await RunIsBusyTaskAsync(async () =>
-            {
-                await NavigationService.GoBackToRootAsync();
-            });
-
-        }
     }
 }

@@ -30,6 +30,14 @@ namespace MultApp.ViewModels
             {
                 IsApiBusy = true;
 
+                if(string.IsNullOrWhiteSpace(Usuario.Username) || string.IsNullOrWhiteSpace(Usuario.Password))
+                {
+                    await AlertService.AlertAsync("Error", "Debe de llenar todos los campos");
+                    IsApiBusy = false;
+
+                    return;
+                }
+
                 if (Connectivity.NetworkAccess != NetworkAccess.Internet)
                 {
                     await AlertService.AlertAsync("No internet connection", "No internet connection detected");
@@ -37,6 +45,7 @@ namespace MultApp.ViewModels
 
                     return;
                 }
+
                 Usuario = await AppUserApiService.UserLoginAsync(Usuario);
 
                 if (Usuario.Persona == null)
@@ -78,7 +87,11 @@ namespace MultApp.ViewModels
 
         private async void OnRegister() 
         {
-            await NavigationService.NavigateAsync($"{Config.RegisterScreen}");
+            await RunIsBusyTaskAsync(async () =>
+            {
+                await NavigationService.NavigateAsync($"{Config.RegisterScreen}");
+
+            });
         }
 
     }

@@ -4,6 +4,8 @@ using Prism.Services;
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace MultApp.ViewModels
 {
@@ -13,9 +15,11 @@ namespace MultApp.ViewModels
         public INavigationService NavigationService { get; }
         public bool IsBusy { get; set; }
         public bool IsApiBusy { get; set; }
+        public ICommand BackCommand { get; }
 
         protected BaseViewModel(IAlertService alertService, INavigationService navigationService)
         {
+            BackCommand = new Command(OnBack);
             AlertService = alertService;
             NavigationService = navigationService;
         }
@@ -24,7 +28,6 @@ namespace MultApp.ViewModels
         {
             if (IsBusy)
             {
-                // prevent accidental double-tap calls
                 return;
             }
             IsBusy = true;
@@ -44,6 +47,13 @@ namespace MultApp.ViewModels
             if (PropertyChanged == null)
                 return;
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private async void OnBack()
+        {
+            await RunIsBusyTaskAsync(async () =>
+            {
+                await NavigationService.GoBackAsync();
+            });
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MultApp.Views.EscribirMultaScreen">
+             x:Class="MultApp.Views.EscribirMultaScreen"
+             NavigationPage.HasNavigationBar="False"
+             >
     <ContentPage.Resources>
         <Style x:Key="CrearHeadersLabels" TargetType="Label" BasedOn="{StaticResource AllText}">
             <Setter Property="FontSize" Value="18" />
@@ -21,52 +23,58 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Margin="10">
-            <Label Text="Crear/Asignar Multa" Style="{StaticResource Header}" Margin="0,10,0,30" />
-            <Grid ColumnDefinitions="125,*">
-                <Label Text="Documento de identificacion" Style="{StaticResource CrearHeadersLabels}" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
-                <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource Datos}" Text="{Binding Persona.Documento}" />
+        <Grid>
+            <StackLayout Padding="0" Margin="0" >
+                <Frame Padding="0" Margin="0" VerticalOptions="FillAndExpand">
+                    <Image  Source="PantallaCrearMulta" Aspect="AspectFill" Margin="0,0,0,-60"></Image>
+                </Frame>
 
-                <Label Text="Nombres" Style="{StaticResource CrearHeadersLabels}" Grid.Row="1" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
-                <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource Datos}" Text="{Binding Persona.Nombre}" />
-
-                <Label Text="Apellidos" Style="{StaticResource CrearHeadersLabels}" Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
-                <Label Grid.Row="2" Grid.Column="1"  Style="{StaticResource Datos}" Text="{Binding Persona.Apellido}" />
-
-                <Label Text="Ley Infringida" Style="{StaticResource CrearHeadersLabels}" Grid.Row="3" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
-
-                <Grid Grid.Row="3" Grid.Column="1" RowDefinitions="45" ColumnDefinitions="*" ColumnSpacing="0" HeightRequest="45">
-                    <Picker Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Leyes}" SelectedItem="{Binding Multa.Ley}"  ItemDisplayBinding="{Binding Descripcion}" Style="{StaticResource Pickers}"/>
+            </StackLayout>
+            <StackLayout Margin="11">
+                <Grid ColumnDefinitions="Auto,*" Margin="0,10,0,0">
+                    <ImageButton Grid.Column="0" Source="BackButton.png" Aspect="AspectFit" BackgroundColor="Transparent" Command="{Binding BackCommand}" />
                 </Grid>
 
-                <Label Text="Descripcion" Style="{StaticResource CrearHeadersLabels}" Grid.Row="4" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
-                <Entry Grid.Row="4" Grid.Column="1"  Text="{Binding Multa.Description}" Placeholder="Descripcion"/>
+                <Label Text="Asignar Multa" Style="{StaticResource Headers}" HorizontalOptions="Center" Margin="0,10,0,30" />
+                <Grid ColumnDefinitions="125,*">
 
-                <Label Text="Direccion" Style="{StaticResource CrearHeadersLabels}" Grid.Row="5" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
-                <Entry Grid.Row="5" Grid.Column="1"  Text="{Binding Multa.Address}" Placeholder="Direccion"/>
+                    <Label Text="Documento de identificacion" Style="{StaticResource TextoNormal}" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
+                    <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource Datos}" Text="{Binding Persona.Documento}" />
+
+                    <Label Text="Nombres" Style="{StaticResource TextoNormal}" Grid.Row="1" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
+                    <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource Datos}" Text="{Binding Persona.Nombre}" />
+
+                    <Label Text="Apellidos" Style="{StaticResource TextoNormal}" Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
+                    <Label Grid.Row="2" Grid.Column="1"  Style="{StaticResource Datos}" Text="{Binding Persona.Apellido}" />
+
+                    <Label Text="Ley Infringida" Style="{StaticResource TextoNormal}" Grid.Row="3" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
+
+                    <Grid Grid.Row="3" Grid.Column="1" RowDefinitions="45" ColumnDefinitions="*" ColumnSpacing="0" HeightRequest="45">
+                        <Picker Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Leyes}" SelectedItem="{Binding Multa.Ley}"  ItemDisplayBinding="{Binding Descripcion}" Style="{StaticResource Pickers}"/>
+                    </Grid>
+
+                    <Label Text="Descripcion" Style="{StaticResource TextoNormal}" Grid.Row="4" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
+                    <Entry Grid.Row="4" Grid.Column="1"  Text="{Binding Multa.Description}" Placeholder="Descripcion"/>
+
+                    <Label Text="Direccion" Style="{StaticResource TextoNormal}" Grid.Row="5" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
+                    <Entry Grid.Row="5" Grid.Column="1"  Text="{Binding Multa.Address}" Placeholder="Direccion"/>
 
 
-                <Label Text="Provincia" Style="{StaticResource CrearHeadersLabels}" Grid.Row="6" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
+                    <Label Text="Provincia" Style="{StaticResource TextoNormal}" Grid.Row="6" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
 
-                <Grid Grid.Row="6" Grid.Column="1" RowDefinitions="45" ColumnDefinitions="*" ColumnSpacing="0" HeightRequest="45">
-                    <Picker Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Provincias}" SelectedItem="{Binding Multa.Provincia}"  ItemDisplayBinding="{Binding Descripcion}" Style="{StaticResource Pickers}"/>
+                    <Grid Grid.Row="6" Grid.Column="1" RowDefinitions="45" ColumnDefinitions="*" ColumnSpacing="0" HeightRequest="45">
+                        <Picker Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Provincias}" SelectedItem="{Binding Multa.Provincia}"  ItemDisplayBinding="{Binding Descripcion}" Style="{StaticResource Pickers}"/>
+                    </Grid>
                 </Grid>
-            </Grid>
 
-            <Button Text="Registrar Infraccion" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,10,0,0" Command="{Binding RegistrarInfraccionCommand}"/>
-            <ActivityIndicator IsVisible="{Binding IsApiBusy}" IsRunning="{Binding IsApiBusy}" />
+                <ImageButton  Source="RegistrarInfraccionButton" BackgroundColor="Transparent" Command="{Binding RegistrarInfraccionCommand}" Aspect="AspectFill" HorizontalOptions="Center" x:Name="RegisterButton"  Margin="10" Padding="-7,-5,-7,-11" CornerRadius="16"/>
+
+                <ActivityIndicator IsVisible="{Binding IsApiBusy}" IsRunning="{Binding IsApiBusy}" />
 
 
 
-            <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Margin="0,0,0,30" VerticalOptions="EndAndExpand" x:Name="UserLeyes">
-                <Image Source="backIcon" Grid.Column="0" WidthRequest="18" />
-                <Label Text=" Volver" BackgroundColor="Transparent" Grid.Column="1"  TextColor="Black" FontAttributes="Bold" FontSize="18"/>
 
-                <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding VolverCommand}"/>
-                </Grid.GestureRecognizers>
-            </Grid>
-
-        </StackLayout>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
