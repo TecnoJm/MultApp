@@ -5,10 +5,6 @@
              NavigationPage.HasNavigationBar="False"
              >
     <ContentPage.Resources>
-        <Style x:Key="CrearHeadersLabels" TargetType="Label" BasedOn="{StaticResource AllText}">
-            <Setter Property="FontSize" Value="18" />
-            <Setter Property="FontAttributes" Value="Bold"/>
-        </Style>
         <Style x:Key="Datos" TargetType="Label">
             <Setter Property="FontSize" Value="18" />
             <Setter Property="TextColor" Value="Black"/>

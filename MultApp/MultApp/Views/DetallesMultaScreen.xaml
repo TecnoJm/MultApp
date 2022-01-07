@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MultApp.Views.DetallesMultaScreen"
+             NavigationPage.HasNavigationBar="False"
+             >
+    <ContentPage.Resources>
+        <Style x:Key="Datos" TargetType="Label">
+            <Setter Property="FontSize" Value="17" />
+            <Setter Property="TextColor" Value="{StaticResource Color1}"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="Pickers" TargetType="Picker">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+            <Setter Property="HeightRequest" Value="45"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout Padding="0" Margin="0" >
+                <Frame Padding="0" Margin="0" VerticalOptions="FillAndExpand">
+                    <Image  Source="PantallaCrearMulta" Aspect="AspectFill" Margin="0,0,0,-60"></Image>
+                </Frame>
+
+            </StackLayout>
+            <StackLayout Margin="11">
+                <Grid ColumnDefinitions="Auto,*" Margin="0,10,0,0">
+                    <ImageButton Grid.Column="0" Source="BackButton.png" Aspect="AspectFit" BackgroundColor="Transparent" Command="{Binding BackCommand}" />
+                </Grid>
+
+                <Label Text="Multa" Style="{StaticResource Headers}" HorizontalOptions="Center" Margin="0,10,0,20" />
+                <Grid ColumnDefinitions="Auto,*">
+
+                    <Label Text="Identificacion" Style="{StaticResource TextoNormal}" Grid.Row="0" Grid.Column="0"  HorizontalOptions="StartAndExpand"  VerticalTextAlignment="Center" FontAttributes="Bold"/>
+                    <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource Datos }" Text="{Binding Persona.Documento}" />
+
+                    <Label Text="Nombre(s)" Style="{StaticResource TextoNormal}" Grid.Row="1" Grid.Column="0" HorizontalOptions="StartAndExpand" FontAttributes="Bold" VerticalTextAlignment="Center"/>
+                    <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource Datos}" Text="{Binding Persona.Nombre}"/>
+
+                    <Label Text="Apellido(s)" Style="{StaticResource TextoNormal}" Grid.Row="2" Grid.Column="0" HorizontalOptions="StartAndExpand" FontAttributes="Bold" VerticalTextAlignment="Center"/>
+                    <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource Datos}" Text="{Binding Persona.Apellido}"/>
+
+
+                    <Label Text="Ley Infringida" Style="{StaticResource TextoNormal}" Grid.Row="3" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" FontAttributes="Bold" />
+
+                    <Grid Grid.Row="3" Grid.Column="1" RowDefinitions="45" ColumnDefinitions="*" ColumnSpacing="0" HeightRequest="45">
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Multa.Ley.Descripcion}" Style="{StaticResource Datos}" VerticalTextAlignment="Center"/>
+                    </Grid>
+
+                    <Label Text="Descripcion" Style="{StaticResource TextoNormal}" Grid.Row="4" Grid.Column="0" HorizontalOptions="StartAndExpand" FontAttributes="Bold" VerticalTextAlignment="Center"/>
+                    <Label Grid.Row="4" Grid.Column="1"  Text="{Binding Multa.Description}" Style="{StaticResource Datos}" VerticalTextAlignment="Center"/>
+
+                    <Label Text="Direccion" Style="{StaticResource TextoNormal}" Grid.Row="5" Grid.Column="0" HorizontalOptions="StartAndExpand" FontAttributes="Bold" VerticalTextAlignment="Center"/>
+                    <Label Grid.Row="5" Grid.Column="1"  Text="{Binding Multa.Address}"  Style="{StaticResource Datos}" VerticalTextAlignment="Center"/>
+
+
+                    <Label Text="Provincia" Style="{StaticResource TextoNormal}" Grid.Row="6" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" FontAttributes="Bold"/>
+
+                    <Grid Grid.Row="6" Grid.Column="1" RowDefinitions="45" ColumnDefinitions="*" ColumnSpacing="0" HeightRequest="45">
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Multa.Provincia.Descripcion}"  Style="{StaticResource Datos}" VerticalTextAlignment="Center" />
+                    </Grid>
+
+                    <Label Text="Monto" Style="{StaticResource TextoNormal}" Grid.Row="7" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" FontAttributes="Bold"/>
+                    <Label Text="{Binding Multa.Ley.Precio, StringFormat='RD{0:C}'}" Style="{StaticResource Datos}" Grid.Row="7" Grid.Column="1" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
+
+                    <Label Text="Paga?" Style="{StaticResource TextoNormal}" Grid.Row="8" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" FontAttributes="Bold"/>
+                    <Label Text="{Binding Multa.PaidString}" Style="{StaticResource Datos}" Grid.Row="8" Grid.Column="1" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
+
+                </Grid>
+
+                <ImageButton  Source="PagarInfraccionButton" BackgroundColor="Transparent" Command="{Binding PagarInfraccionCommand}" Aspect="AspectFill" HorizontalOptions="Center" x:Name="RegisterButton"  Margin="10" Padding="-7,-5,-7,-11" CornerRadius="16" IsEnabled="{Binding IsPaymentEnabled}" IsVisible="{Binding IsPaymentEnabled}"/>
+
+
+
+
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

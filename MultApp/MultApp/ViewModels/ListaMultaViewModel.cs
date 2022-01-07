@@ -14,37 +14,89 @@ namespace MultApp.ViewModels
     public class ListaMultaViewModel : BaseViewModel, INavigatedAware
     {
         public ObservableCollection<Multa> Multas { get; set; }
+        public Usuario Usuario  { get; set; }
         public Persona Persona { get; set; }
         public IPenaltyApiService PenaltyApiService { get; }
-        public ICommand TappedCommand { get; }
+        public ICommand SelectPenaltyCommand { get; }
 
         public ListaMultaViewModel(IAlertService alertService, INavigationService navigationService, IPenaltyApiService penaltyApiService) : base(alertService, navigationService)
         {
             PenaltyApiService = penaltyApiService;
-            TappedCommand = new Command<Multa>(OnTapped);
+            SelectPenaltyCommand = new Command<Multa>(OnSelectPenalty);
+            Usuario = null;
+            Persona = null;
         }
 
         public async void OnNavigatedTo(INavigationParameters parameters)
         {
+            Multas = null;
+
             if (parameters.TryGetValue(Config.PersonaParam, out Persona persona))
             {
                 Persona = persona;
+
             }
 
-            await RunIsBusyTaskAsync(async () =>
+            if (parameters.TryGetValue(Config.UsuarioParam, out Usuario usuario))
             {
-                IsApiBusy = true;
-                Multas = await PenaltyApiService.GetPenailtiesByPersonIdAsync(Persona.Id);
-                IsApiBusy = false;
+                Usuario = usuario;
+            }
 
-            });
+            if(Persona != null)
+            {
+                await RunIsBusyTaskAsync(async () =>
+                {
+                    IsApiBusy = true;
+                    Multas = await PenaltyApiService.GetPenailtiesByPersonIdAsync(Persona.Id);
+                    IsApiBusy = false;
+
+                });
+                return;
+            }
+
+
+            if (Usuario != null)
+            {
+                await RunIsBusyTaskAsync(async () =>
+                {
+                    IsApiBusy = true;
+                    Multas = await PenaltyApiService.GetPenailtiesByPersonIdAsync(Usuario.Persona.Id);
+                    IsApiBusy = false;
+
+                });
+                return;
+            }
+
+
+
+            if (Persona == null && Usuario == null)
+            {
+                await AlertService.AlertAsync("Error", "Ha ocurrido un error al intentar conseguir la lista de multas");
+            }
         }
 
-        private async void OnTapped(Multa multa)
+        private async void OnSelectPenalty(Multa multa)
         {
             await RunIsBusyTaskAsync(async () =>
             {
-                await AlertService.AlertAsync("!", multa.Description);
+                if (Persona != null)
+                {
+                    await NavigationService.NavigateAsync($"{Config.DetallesMultaScreen}", new NavigationParameters()
+                    {
+                        {Config.PersonaParam, Persona },
+                        {Config.MultaParam , multa }
+                    });
+                }
+
+                if (Usuario != null)
+                {
+                    await NavigationService.NavigateAsync($"{Config.DetallesMultaScreen}", new NavigationParameters()
+                    {
+                        {Config.UsuarioParam, Usuario },
+                        {Config.MultaParam, multa }
+                    });
+                }
+
             });
         }
 

@@ -33,11 +33,14 @@ namespace MultApp
             containerRegistry.RegisterForNavigation<ListaMultaScreen, ListaMultaViewModel>(Config.ListaMultaScreen);
             containerRegistry.RegisterForNavigation<EscribirMultaScreen, EscribirMultaViewModel>(Config.EscribirMultaScreen);
             containerRegistry.RegisterForNavigation<VerEstadoMultaScreen, VerEstadoMultaViewModel>(Config.VerEstadoMultaScreen);
+            containerRegistry.RegisterForNavigation<DetallesMultaScreen, DetallesMultaViewModel>(Config.DetallesMultaScreen);
+            containerRegistry.RegisterForNavigation<PagoScreen, PagoViewModel>(Config.PagoScreen);
 
 
             containerRegistry.Register<IAppUserApiService, AppUserApiService>();
             containerRegistry.Register<IPenaltyApiService, PenaltyApiService>();
             containerRegistry.Register<IPersonApiService, PersonApiService>();
+            containerRegistry.Register<IPaymentApiService, PaymentApiService>();
             containerRegistry.Register<IProvinceApiService, ProvinceApiService>();
             containerRegistry.Register<IAlertService, AlertService>();
         }

@@ -7,9 +7,6 @@
              NavigationPage.HasNavigationBar="False"
              >
     <ContentPage.Resources>
-        <Style x:Key="TableHeader" TargetType="Label" BasedOn="{StaticResource AllText}">
-            <Setter Property="FontAttributes" Value="Bold"/>
-        </Style>
         <ResourceDictionary>
             <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
         </ResourceDictionary>
@@ -28,9 +25,9 @@
                 </Grid>
                 
                 <Label Text="Multas" Style="{StaticResource Header}"/>
-                <Grid ColumnDefinitions="*,*" Margin="10,10,10,0" HeightRequest="25">
-                    <Label Text="Ley Infringida" Style="{StaticResource TableHeader}" Grid.Column="0"/>
-                    <Label Text="Fecha" Style="{StaticResource TableHeader}" Grid.Column="1"  HorizontalTextAlignment="Center"/>
+                <Grid ColumnDefinitions="*,*" Margin="10,10,10,0" HeightRequest="30">
+                    <Label Text="Ley Infringida" Style="{StaticResource TextoNormal}" TextColor="{StaticResource Color1}" FontAttributes="Bold" Grid.Column="0"/>
+                    <Label Text="Fecha" Style="{StaticResource TextoNormal}" TextColor="{StaticResource Color1}" FontAttributes="Bold"  Grid.Column="1"  HorizontalTextAlignment="Center"/>
                 </Grid>
 
                 <BoxView Color="{StaticResource Color2}" HeightRequest="2" />
@@ -46,15 +43,15 @@
 
                     <ListView.Behaviors>
                         <xct:EventToCommandBehavior EventName="ItemSelected"
-                                              Command="{Binding TappedCommand}"
+                                              Command="{Binding SelectPenaltyCommand}"
                                               EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}" />
                     </ListView.Behaviors>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <Grid ColumnDefinitions="*,*" Margin="5" Padding="5">
-                                    <Label Text="{Binding Ley.Descripcion}" Style="{StaticResource AllText}" Grid.Column="0" VerticalTextAlignment="Center"/>
-                                    <Label Text="{Binding CreatedDateFormatted}" Style="{StaticResource AllText}" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding Ley.Descripcion}" Style="{StaticResource TextoNormal}" TextColor="{StaticResource Color1}" FontSize="14"  FontAttributes="Bold" Grid.Column="0" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding CreatedDateFormatted}" Style="{StaticResource TextoNormal}" TextColor="{StaticResource Color1}"  FontSize="14" FontAttributes="Bold" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

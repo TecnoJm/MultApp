@@ -7,6 +7,8 @@ namespace MultApp.Models
 {
     public class Multa
     {
+        [JsonProperty("Id")]
+        public int Id { get; set; }
 
         [JsonProperty("PersonId")]
         public int PersonId { get; set; }
@@ -19,6 +21,16 @@ namespace MultApp.Models
 
         [JsonProperty("Paid")]
         public bool Paid { get; set; }
+
+        public string PaidString 
+        { 
+            get
+            {
+                if (this.Paid == true) return "Si";
+                else return "No";
+            }
+
+        }
 
         [JsonProperty("CreatedDate")]
         public DateTime CreatedDate { get; set; }

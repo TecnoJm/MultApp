@@ -12,7 +12,7 @@ namespace MultApp.ViewModels
 {
     public class MainScreenConductorViewModel : BaseViewModel, IInitialize
     {
-        public Persona Persona { get; set; }
+        public Usuario Usuario { get; set; }
         public ICommand ListaMultaCommand { get; }
 
         public MainScreenConductorViewModel(IAlertService alertService, INavigationService navigationService) : base(alertService, navigationService)
@@ -24,7 +24,7 @@ namespace MultApp.ViewModels
         {
             if (parameters.TryGetValue(Config.UsuarioParam, out Usuario usuario))
             {
-                Persona = usuario.Persona;
+                Usuario = usuario;
             }
         }
 
@@ -34,7 +34,7 @@ namespace MultApp.ViewModels
             {
                 await NavigationService.NavigateAsync($"{Config.ListaMultaScreen}", new NavigationParameters()
                 {
-                    {Config.PersonaParam, Persona}
+                    {Config.UsuarioParam, Usuario}
                 });
             });
 
