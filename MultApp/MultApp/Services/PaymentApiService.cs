@@ -34,7 +34,7 @@ namespace MultApp.Services
 
         public string CreateToken(PaymentInformation paymentInformation)
         {
-            StripeConfiguration.ApiKey = "pk_test_51J4Vq5JywCuYaxUHsP3Ix9k7GyhkfKxX7j2UXJQDtjhInhGTn20Np6TiO4GBr5wbIwayFOpfndUVdHfkK5lUTHYF00OyOTKnpS";
+            StripeConfiguration.ApiKey = "pk_test_51KFU8EL7FhHaVGm7TRCPkcEZiwJaMM4ep0Sl9kzCRRHBEdG7dtBz48DfGcPxbkyIXP4yCr6wNXaURJgB5648j85V00FySF7ipA";
 
             var tokenOptions = new TokenCreateOptions()
             {
