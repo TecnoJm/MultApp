@@ -26,13 +26,13 @@
                 <ActivityIndicator IsVisible="{Binding IsApiBusy}" IsRunning="{Binding IsApiBusy}" />
                 <Frame BackgroundColor="Transparent" HasShadow="False">
                     <StackLayout Orientation="Vertical" Spacing="10">
-                        <controls:WhiteLineEntry x:Name="Username" Text="{Binding Usuario.Username}" Placeholder="Nombre de usuario"   
+                        <controls:WhiteLineEntry x:Name="Username" Text="{Binding Username, Mode=TwoWay}" Placeholder="Nombre de usuario"   
                                HeightRequest="40"   
                                Keyboard="Text"  
                                Style="{StaticResource TextoNormal}"
                                PlaceholderColor="{StaticResource Color2}" />
 
-                        <controls:WhiteLineEntry  x:Name="Password" Text="{Binding Usuario.Password}" Placeholder="Contraseña"   
+                        <controls:WhiteLineEntry  x:Name="Password" Text="{Binding Password,  Mode=TwoWay}" Placeholder="Contraseña"   
                                HeightRequest="40"   
                                IsPassword="True"  
                                Style="{StaticResource TextoNormal}"

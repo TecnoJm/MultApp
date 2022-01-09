@@ -10,7 +10,8 @@ namespace MultApp
         public const string ApiKey = "AIzaSyA1s3jcQ0XKC-1HazAxpvBNwXEM3jmzYBo";
 
 
-        public const string ApiUrl = "https://multapp-api.herokuapp.com/api";
+        public const string ApiUrl = "http://192.168.0.22:3000/api";
+        //public const string ApiUrl = "https://multapp-api.herokuapp.com/api";
 
         public static ObservableCollection<Ley> Leyes { get; set; }
         public static ObservableCollection<Provincia> Provincias { get; set; }

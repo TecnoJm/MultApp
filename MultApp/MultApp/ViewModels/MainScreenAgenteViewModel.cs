@@ -14,6 +14,7 @@ namespace MultApp.ViewModels
     {
         public bool IsEnabled { get; set; } = false;
         public string DocumentoDeIdentidad { get; set; }
+        public Usuario Usuario { get; set; }
         public Persona Persona { get; set; }
 
         public IPersonApiService PersonApiService { get; }
