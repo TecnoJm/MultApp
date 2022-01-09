@@ -53,6 +53,23 @@ namespace MultApp.Services
 
             return success;
         }
+
+        public async Task<bool> GetUserByPersonId(int id)
+        {
+            bool success = false;
+
+            var refitClient = RestService.For<IAppUserApi>(Config.ApiUrl);
+
+            var response = await refitClient.GetUserByPersonId(Config.ApiKey, id);
+
+
+            if (response.IsSuccessStatusCode)
+            {
+                success = true;
+            }
+
+            return success;
+        }
     }
 }
 

@@ -16,5 +16,8 @@ namespace MultApp.Services
         [Post("/user/login?api_key={key}")]
         [Headers("Content-Type: application/json")]
         Task<HttpResponseMessage> UserLoginAsync(string key, [Body] Usuario usuario);
+
+        [Get("/user/find/{id}?api_key={key}")]
+        Task<HttpResponseMessage> GetUserByPersonId(string key, int id);
     }
 }

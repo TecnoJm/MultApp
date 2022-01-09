@@ -15,7 +15,7 @@
         <Grid>
             <StackLayout Padding="0" Margin="0" >
                 <Frame Padding="0" Margin="0" VerticalOptions="FillAndExpand">
-                    <Image  Source="PantallaVerMultas" Aspect="AspectFill" Margin="0,0,0,-60"></Image>
+                    <Image  Source="PantallaVerMultas" Aspect="AspectFill" Margin="0,-60,0,0"></Image>
                 </Frame>
 
             </StackLayout>

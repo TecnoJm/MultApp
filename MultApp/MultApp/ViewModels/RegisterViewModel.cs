@@ -36,12 +36,20 @@ namespace MultApp.ViewModels
                     IsApiBusy = false;
                     return;
                 }
-
+                
                 Persona = await PersonApiService.GetPersonByDocumentAsync(DocumentoDeIdentidad);
 
                 if (Persona == null)
                 {
                     await AlertService.AlertAsync("Error", "El documento ingresado no es valido");
+                    IsApiBusy = false;
+                    return;
+                }
+                bool cuenta = await AppUserApiService.GetUserByPersonId(Persona.Id);
+
+                if(cuenta)
+                {
+                    await AlertService.AlertAsync("Error", "Ya existe una cuenta con este documento");
                     IsApiBusy = false;
                     return;
                 }

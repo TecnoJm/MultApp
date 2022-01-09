@@ -9,5 +9,6 @@ namespace MultApp.Services
     {
         Task<Usuario> UserLoginAsync(Usuario usuario);
         Task<bool> UserRegisterAsync(Usuario usuario);
+        Task<bool> GetUserByPersonId(int id);
     }
 }
